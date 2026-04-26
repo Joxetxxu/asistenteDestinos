@@ -1,5 +1,11 @@
 export interface MigasProps {
-    key: number;
-    name: string;
-    path: string;
+    nivel2: boolean;
+    titulo: string
+}
+
+
+export type GlobalInfo = {
+    user: string,
+    pass: string,
+    isLogin: boolean
 }

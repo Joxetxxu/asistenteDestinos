@@ -1,32 +1,12 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { RastroMigas } from "../../components/RastroMigas";
 
 export function Mapa() {
-    return <div>
-        <Navbar expand="lg" className="bg-body-tertiary">
-            <Container>
-                <Navbar.Brand href="#home">fsdf</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-
-
-
-    </div>;
+    return <Container>
+        <Row>
+            <Col xs={12} md={6}>
+                <RastroMigas key="rm" titulo='Mapa de destinos' nivel2={false} />
+            </Col>
+        </Row>
+    </Container>
 }

@@ -2,14 +2,15 @@ import { AdminPanelSettings, Assignment, Map, QueryStats } from '@mui/icons-mate
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import { RastroMigas } from '../components/RastroMigas';
+import { contextoStore } from '../store/store'
 export function Home() {
 
     let navigate = useNavigate();
-
+    const isLogin = contextoStore((state) => state.isLogin);
     return <Container>
         <Row>
             <Col>
-                <RastroMigas></RastroMigas>
+                <RastroMigas key="rm" titulo='' nivel2={false} />
             </Col>
         </Row>
         <Row>
@@ -58,20 +59,21 @@ export function Home() {
                     </Card.Body>
                 </Card>
 
-                <Card key="op4" onClick={() => { navigate("/admin") }}>
-                    <Card.Body>
-                        <Container>
-                            <Row>
-                                <Col xs={12} className='text-center'>
-                                    <AdminPanelSettings color='primary' className='mb-2' sx={{ fontSize: 70 }}></AdminPanelSettings>
-                                    <Card.Subtitle className='mb-2 mt-2'><p className='tit'>Administración</p></Card.Subtitle>
-                                    <p className='text-muted'>Permite consultar las tablas maestras del sistema, etc.</p>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Card.Body>
-                </Card>
-
+                {isLogin &&
+                    <Card key="op4" onClick={() => { navigate("/admin") }}>
+                        <Card.Body>
+                            <Container>
+                                <Row>
+                                    <Col xs={12} className='text-center'>
+                                        <AdminPanelSettings color='primary' className='mb-2' sx={{ fontSize: 70 }}></AdminPanelSettings>
+                                        <Card.Subtitle className='mb-2 mt-2'><p className='tit'>Administración</p></Card.Subtitle>
+                                        <p className='text-muted'>Permite consultar las tablas maestras del sistema, etc.</p>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </Card.Body>
+                    </Card>
+                }
             </div>
         </Row >
     </Container >

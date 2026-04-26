@@ -1,6 +1,7 @@
 import { Assignment, FormatListBulleted } from "@mui/icons-material";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { RastroMigas } from "../../components/RastroMigas";
 
 export function Administracion() {
 
@@ -8,8 +9,13 @@ export function Administracion() {
 
     return (
         <>
-            <div>Administración</div>
+            {/* <div>Administración</div> */}
             <Container>
+                <Row>
+                    <Col>
+                        <RastroMigas key="rm" titulo='Administración' nivel2={false} />
+                    </Col>
+                </Row>
                 <Row>
                     <div id='cardlist' className="cardlist">
                         <Card key="op1" onClick={() => { navigate("/buscador") }}>
