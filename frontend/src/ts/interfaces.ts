@@ -9,3 +9,10 @@ export type GlobalInfo = {
     pass: string,
     isLogin: boolean
 }
+
+export type Post = {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+};

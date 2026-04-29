@@ -2,6 +2,8 @@ server:
   port: 8090
 
 spring:
+  mvc:
+    dispatch-options-request: true
   application:
     name: tfg
 

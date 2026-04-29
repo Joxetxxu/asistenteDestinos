@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import './App.css';
+
 import { Administracion } from './pages/admin/Administracion';
 import { Asistente } from './pages/asistente/Asistente';
 import { Rellenar } from './pages/cuestionario/Rellenar';
@@ -29,7 +29,6 @@ function App() {
     <>
       <Suspense fallback="cargando">
         <header id="cabecera">
-
           <Container>
             <Row>
               <Col xs={12} md={3}>
@@ -46,8 +45,6 @@ function App() {
         </header>
         <main id="cuerpo" >
           <Container>
-
-
             <Row>
               <Col xs={12}>
                 <RouterProvider router={router}>
@@ -57,9 +54,7 @@ function App() {
           </Container>
         </main>
         <footer id="pie">Trabajo fin de Grado - Universidad Internacional de La Rioja</footer>
-
       </Suspense >
-      <hr />
     </>
   )
 }

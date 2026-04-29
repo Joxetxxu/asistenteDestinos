@@ -1,12 +1,27 @@
 import { AdminPanelSettings, Assignment, Map, QueryStats } from '@mui/icons-material';
+import { useEffect } from 'react';
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import { RastroMigas } from '../components/RastroMigas';
-import { contextoStore } from '../store/store'
+import { contextoStore } from '../store/store';
+import { cambiaCredencialesAxios } from '../ts/config-axios';
+import { getOrganismos } from '../ts/restClient';
+
 export function Home() {
 
     let navigate = useNavigate();
     const isLogin = contextoStore((state) => state.isLogin);
+    useEffect(() => {
+        cambiaCredencialesAxios("user", "user")
+        getOrganismos().then(
+            (data) => {
+                console.log(data)
+            }
+        )
+
+    }, [])
+
+
     return <Container>
         <Row>
             <Col>
