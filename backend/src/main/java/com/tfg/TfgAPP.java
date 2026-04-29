@@ -9,5 +9,4 @@ public class TfgAPP {
     public static void main(String[] args) {
         SpringApplication.run(TfgAPP.class, args);
     }
-
 }
