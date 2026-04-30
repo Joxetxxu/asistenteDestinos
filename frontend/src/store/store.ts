@@ -3,5 +3,6 @@ import type { GlobalInfo } from '../ts/interfaces'
 export const contextoStore = create<GlobalInfo>((set) => ({
     user: 'jose',
     pass: 'miguel',
-    isLogin: true
+    isLogin: false,
+    setLogin: (islog) => {set({ isLogin: islog })}
 }))  

@@ -7,7 +7,9 @@ export interface MigasProps {
 export type GlobalInfo = {
     user: string,
     pass: string,
-    isLogin: boolean
+    isLogin: boolean,
+    setLogin: (boolean) => void 
+
 }
 
 export type Login = {

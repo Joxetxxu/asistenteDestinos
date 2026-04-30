@@ -1,5 +1,5 @@
 import { Suspense, useState } from 'react';
-import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Modal, Row, Alert } from 'react-bootstrap';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Administracion } from './pages/admin/Administracion';
@@ -8,110 +8,151 @@ import { Rellenar } from './pages/cuestionario/Rellenar';
 import { Home } from './pages/Home';
 import { Mapa } from './pages/mapa/Mapa';
 import type { Login } from './ts/interfaces';
-//Navegacion
+import { getPerfil } from './ts/restClient';
+import { cambiaCredencialesAxios } from './ts/config-axios';
+import { contextoStore } from './store/store';
 
-const [show, setShow] = useState(false);
-const [login, setLogin] = useState<Login>({ user: "", pass: "" });
+function App() {
 
-
-
-// handle change event
-const handleChange = (e) => {
-  e.preventDefault(); // prevent the default action
-  setLogin(e.target.value); // set name to e.target.value (event)
-
-};
-// metodos para la ventana de login
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-
-const router = createBrowserRouter([
-  {
-    path: "/", element: <Home />,
-  },
-  {
-    path: "/mapa", element: <Mapa />,
-  },
-  {
-    path: "/buscador", element: <Asistente />,
-  },
-  {
-    path: "/admin", element: <Administracion />,
-  },
-  {
-    path: "/rellenarCuestionario", element: <Rellenar />,
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const [login, setLogin] = useState<Login>({ user: "", pass: "" });
+  const [mensaje, setMensaje] = useState("");
+  const logging = contextoStore((state) => state.setLogin);
+  const isLogin = contextoStore((state) => state.isLogin);
+  // Actualizar formulario
+  function updateFields(fields: Partial<Login>) {
+    setLogin(prev => { return { ...prev, ...fields } })
   }
 
-]);
-return (
-  <>
-    <Suspense fallback="cargando">
-      <header id="cabecera">
-        <Container>
-          <Row>
-            <Col xs={12} md={3}>
-              <img src="logo.png" height="100" className="framework" alt="React logo" />
-            </Col>
-            <Col xs={12} md={6} className='titulo'>
-              Asistente para la Elección de destinos
-            </Col>
-            <Col xs={12} md={3} className='titulo'>
-              <Button variant="link" onClick={handleShow} >Iniciar Sesión</Button>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-      <main id="cuerpo" >
-        <Container>
-          <Row>
-            <Col xs={12}>
-              <RouterProvider router={router}>
-              </RouterProvider>
-            </Col>
-          </Row>
-        </Container>
-      </main>
-      <footer id="pie">Trabajo fin de Grado - Universidad Internacional de La Rioja</footer>
+  // metodos para la ventana de login
+  const handleClose = () => {
+    cambiaCredencialesAxios(login.user, login.pass)
+    getPerfil().then((data) => {
+      setMensaje("")
+      if (data === 'ROLE_ROL_ADMIN') {
+        logging(true)
+      } else {
+        logging(false)
+      }
+      setShow(false)
+    }).catch((e) => {
+      if (e.status === 401) {
+        cambiaCredencialesAxios('user', 'user')
+        setMensaje("Credenciales incorrectas")
+      }
+    })
+  };
 
-      <Modal show={show} onHide={handleClose} backdrop="static"
-        keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Iniciar Sesión</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-              <Form.Label column sm="4">
-                Usuario{login.user}
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control placeholder='Usuario' defaultValue={login.user} onChange={handleChange} />
+  const handleCloseSes = () => {
+    logging(false)
+    cambiaCredencialesAxios('user', 'user')
+    setShow2(true)
+  }
+
+
+  const handleShow = () => setShow(true);
+
+  const router = createBrowserRouter([
+    {
+      path: "/", element: <Home />,
+    },
+    {
+      path: "/mapa", element: <Mapa />,
+    },
+    {
+      path: "/buscador", element: <Asistente />,
+    },
+    {
+      path: "/admin", element: <Administracion />,
+    },
+    {
+      path: "/rellenarCuestionario", element: <Rellenar />,
+    }
+
+  ]);
+  return (
+    <>
+      <Suspense fallback="cargando">
+        <header id="cabecera">
+          <Container>
+            <Row>
+              <Col xs={12} md={3}>
+                <img src="logo.png" height="100" className="framework" alt="React logo" />
               </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-              <Form.Label column sm="4">
-                Password
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control type="password" placeholder="Password" defaultValue={login.pass} />
+              <Col xs={12} md={6} className='titulo'>
+                Asistente para la Elección de destinos
               </Col>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Acceder
-          </Button>
-        </Modal.Footer>
-      </Modal>
+              <Col xs={12} md={3} className='titulo'>
+                {isLogin === false && <Button variant="link" onClick={handleShow} >Iniciar Sesión</Button>}
+                {isLogin === true && <Button variant="link" onClick={handleCloseSes} >Cerrar Sesión</Button>}
+              </Col>
+            </Row>
+          </Container>
+        </header>
+        <main id="cuerpo" >
+          <Container>
+            <Row>
+              <Col xs={12}>
+                <RouterProvider router={router}>
+                </RouterProvider>
+              </Col>
+            </Row>
+          </Container>
+        </main>
+        <footer id="pie">Trabajo fin de Grado - Universidad Internacional de La Rioja</footer>
 
-    </Suspense >
-  </>
-)
+        <Modal show={show} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Iniciar Sesión</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label column sm="4">
+                  Usuario
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control placeholder='Usuario' defaultValue={login.user} onChange={(e) => updateFields({ user: e.target.value })} />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                <Form.Label column sm="4">
+                  Password
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control type="password" placeholder="Password" defaultValue={login.pass} onChange={(e) => updateFields({ pass: e.target.value })} />
+                </Col>
+              </Form.Group>
+              {mensaje && <Alert key="danger" variant="danger">{mensaje}</Alert>}
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => { setShow(false) }}>
+              Cerrar
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Acceder
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={show2} backdrop="static" keyboard={false}>
+          <Modal.Header>
+            <Modal.Title>Aviso</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Sessión cerrada correctamente</Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => { setShow2(false) }}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+      </Suspense >
+    </>
+  )
 }
 
 export default App
