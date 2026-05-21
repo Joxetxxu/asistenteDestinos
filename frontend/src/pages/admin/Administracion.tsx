@@ -18,7 +18,7 @@ export function Administracion() {
                 </Row>
                 <Row>
                     <div id='cardlist' className="cardlist">
-                        <Card key="op1" onClick={() => { navigate("/buscador") }}>
+                        <Card key="op1" onClick={() => { navigate("/tablasMaestras") }}>
                             <Card.Body>
                                 <Container>
                                     <Row>

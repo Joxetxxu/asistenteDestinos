@@ -11,6 +11,7 @@ import type { Login } from './ts/interfaces';
 import { getPerfil } from './ts/restClient';
 import { cambiaCredencialesAxios } from './ts/config-axios';
 import { contextoStore } from './store/store';
+import { TablasMaestras } from './pages/admin/maestras/TablasMaestras';
 
 function App() {
 
@@ -67,6 +68,9 @@ function App() {
       path: "/admin", element: <Administracion />,
     },
     {
+      path: "/tablasMaestras", element: <TablasMaestras />,
+    },
+    {
       path: "/rellenarCuestionario", element: <Rellenar />,
     }
 
@@ -81,11 +85,11 @@ function App() {
                 <img src="logo.png" height="100" className="framework" alt="React logo" />
               </Col>
               <Col xs={12} md={6} className='titulo'>
-                Asistente para la Elección de destinos
+                Plataforma de inteligencia para la evaluación de condiciones laborales en los organismos públicos de España
               </Col>
               <Col xs={12} md={3} className='titulo'>
-                {isLogin === false && <Button variant="link" onClick={handleShow} >Iniciar Sesión</Button>}
-                {isLogin === true && <Button variant="link" onClick={handleCloseSes} >Cerrar Sesión</Button>}
+                {isLogin === false && <Button variant="secondary" onClick={handleShow} >Iniciar Sesión</Button>}
+                {isLogin === true && <Button variant="secondary" onClick={handleCloseSes} >Cerrar Sesión</Button>}
               </Col>
             </Row>
           </Container>

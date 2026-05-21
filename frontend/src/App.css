@@ -33,8 +33,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
+    --text-h: #333 --bg: #16171d;
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
@@ -110,6 +109,18 @@ p {
   align-content: center;
 }
 
+.tituloMenu {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: .1rem;
+  color: #333;
+  font-family: unset;
+  align-content: center;
+  margin: 0rem 0rem 2rem 0rem;
+}
+
+
 #cabecera {
   display: flex;
   flex-direction: column;
@@ -122,6 +133,11 @@ p {
 nav {
   background-color: lightsteelblue;
   width: 100%;
+}
+
+.nav-link {
+  color: #0d6efd ;
+  background-color: lightsteelblue;
 }
 
 #cuerpo {
@@ -180,4 +196,11 @@ nav {
   .breadcrumb-item {
     font-size: medium;
   }
+}
+
+
+.cabeceratabla {
+  background-color: #0d6efd !important;
+  color: white;
+  font-size: medium;
 }
