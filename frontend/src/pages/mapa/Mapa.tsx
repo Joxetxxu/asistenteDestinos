@@ -10,9 +10,10 @@ export function Mapa() {
         </Row>
         <Row>
             <Col xs={12}>
-                 <MapComponent></MapComponent>
+                <p className="tituloMenu">Mapa de destinos</p>
+                <MapComponent></MapComponent>
             </Col>
         </Row>
-        
+
     </Container>
 }

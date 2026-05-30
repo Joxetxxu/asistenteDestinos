@@ -27,3 +27,14 @@ export interface Municipio {
     descripcion: string;
     provincia: Provincia;
 }
+
+export type Position = {
+    lat: number,
+    lng: number,
+};
+export type Marcador = {
+    id: number,
+    name: string,
+    position: Position
+};
+

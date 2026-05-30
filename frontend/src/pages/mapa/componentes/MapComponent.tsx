@@ -7,8 +7,9 @@ import {
     useMap,
     useMapsLibrary,
 } from "@vis.gl/react-google-maps";
+import type { Marcador } from "../../../ts/interfaces";
 
-const locations = [
+const locations : Marcador[]= [
     {
         id: 1,
         name: "Puerta del Sol",
