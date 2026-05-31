@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { Encuesta } from './interfaces';
 
 
 export const getPerfil = async (): Promise<String> => {
@@ -20,5 +21,11 @@ export const getProvincias = async (): Promise<any> => {
 
 export const getMunicipios = async (): Promise<any> => {
     const response = await axios.get<any>(`http://localhost:8090/municipios`);
+    return response.data;
+}
+
+
+export const getEncuestas = async (): Promise<any> => {
+    const response = await axios.get<Encuesta[]>(`http://localhost:8090/encuestas`);
     return response.data;
 }

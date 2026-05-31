@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Modal, Row, Alert } from 'react-bootstrap';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -13,6 +13,9 @@ import { cambiaCredencialesAxios } from './ts/config-axios';
 import { contextoStore } from './store/store';
 import { TablasMaestras } from './pages/admin/maestras/TablasMaestras';
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 function App() {
 
   const [show, setShow] = useState(false);
@@ -51,6 +54,10 @@ function App() {
     setShow2(true)
   }
 
+  useEffect(() => {
+    cambiaCredencialesAxios('user', 'user')
+    dayjs.locale('es')
+  }, [])
 
   const handleShow = () => setShow(true);
 
@@ -78,82 +85,83 @@ function App() {
   return (
     <>
       <Suspense fallback="cargando">
-        <header id="cabecera">
-          <Container>
-            <Row>
-              <Col xs={12} md={3}>
-                <img src="logo.png" height="100" className="framework" alt="React logo" />
-              </Col>
-              <Col xs={12} md={6} className='titulo'>
-                Plataforma de inteligencia para la evaluación de condiciones laborales en los organismos públicos de España
-              </Col>
-              <Col xs={12} md={3} className='titulo'>
-                {isLogin === false && <Button variant="secondary" onClick={handleShow} >Iniciar Sesión</Button>}
-                {isLogin === true && <Button variant="secondary" onClick={handleCloseSes} >Cerrar Sesión</Button>}
-              </Col>
-            </Row>
-          </Container>
-        </header>
-        <main id="cuerpo" >
-          <Container>
-            <Row>
-              <Col xs={12}>
-                <RouterProvider router={router}>
-                </RouterProvider>
-              </Col>
-            </Row>
-          </Container>
-        </main>
-        <footer id="pie">Trabajo fin de Grado - Universidad Internacional de La Rioja</footer>
-
-        <Modal show={show} backdrop="static" keyboard={false}>
-          <Modal.Header closeButton>
-            <Modal.Title>Iniciar Sesión</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-              <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="4">
-                  Usuario
-                </Form.Label>
-                <Col sm="8">
-                  <Form.Control placeholder='Usuario' defaultValue={login.user} onChange={(e) => updateFields({ user: e.target.value })} />
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+          <header id="cabecera">
+            <Container>
+              <Row>
+                <Col xs={12} md={3}>
+                  <img src="logo.png" height="100" className="framework" alt="React logo" />
                 </Col>
-              </Form.Group>
-
-              <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column sm="4">
-                  Password
-                </Form.Label>
-                <Col sm="8">
-                  <Form.Control type="password" placeholder="Password" defaultValue={login.pass} onChange={(e) => updateFields({ pass: e.target.value })} />
+                <Col xs={12} md={6} className='titulo'>
+                  Plataforma de inteligencia para la evaluación de condiciones laborales en los organismos públicos de España
                 </Col>
-              </Form.Group>
-              {mensaje && <Alert key="danger" variant="danger">{mensaje}</Alert>}
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => { setShow(false) }}>
-              Cerrar
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Acceder
-            </Button>
-          </Modal.Footer>
-        </Modal>
+                <Col xs={12} md={3} className='titulo'>
+                  {isLogin === false && <Button variant="secondary" onClick={handleShow} >Iniciar Sesión</Button>}
+                  {isLogin === true && <Button variant="secondary" onClick={handleCloseSes} >Cerrar Sesión</Button>}
+                </Col>
+              </Row>
+            </Container>
+          </header>
+          <main id="cuerpo" >
+            <Container>
+              <Row>
+                <Col xs={12}>
+                  <RouterProvider router={router}>
+                  </RouterProvider>
+                </Col>
+              </Row>
+            </Container>
+          </main>
+          <footer id="pie">Trabajo fin de Grado - Universidad Internacional de La Rioja</footer>
 
-        <Modal show={show2} backdrop="static" keyboard={false}>
-          <Modal.Header>
-            <Modal.Title>Aviso</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Sessión cerrada correctamente</Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={() => { setShow2(false) }}>
-              Cerrar
-            </Button>
-          </Modal.Footer>
-        </Modal>
+          <Modal show={show} backdrop="static" keyboard={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>Iniciar Sesión</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                  <Form.Label column sm="4">
+                    Usuario
+                  </Form.Label>
+                  <Col sm="8">
+                    <Form.Control placeholder='Usuario' defaultValue={login.user} onChange={(e) => updateFields({ user: e.target.value })} />
+                  </Col>
+                </Form.Group>
 
+                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                  <Form.Label column sm="4">
+                    Password
+                  </Form.Label>
+                  <Col sm="8">
+                    <Form.Control type="password" placeholder="Password" defaultValue={login.pass} onChange={(e) => updateFields({ pass: e.target.value })} />
+                  </Col>
+                </Form.Group>
+                {mensaje && <Alert key="danger" variant="danger">{mensaje}</Alert>}
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => { setShow(false) }}>
+                Cerrar
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Acceder
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <Modal show={show2} backdrop="static" keyboard={false}>
+            <Modal.Header>
+              <Modal.Title>Aviso</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Sessión cerrada correctamente</Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={() => { setShow2(false) }}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </LocalizationProvider>
       </Suspense >
     </>
   )
