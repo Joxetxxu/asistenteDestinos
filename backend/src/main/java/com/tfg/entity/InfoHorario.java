@@ -2,6 +2,8 @@ package com.tfg.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -19,6 +21,7 @@ public class InfoHorario implements Serializable {
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
+    @JsonIgnore
     private Encuesta encuesta;
     private String horario;
     private String tardesObligatorias;

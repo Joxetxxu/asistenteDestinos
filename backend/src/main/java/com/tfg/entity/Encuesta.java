@@ -31,32 +31,24 @@ public class Encuesta implements Serializable {
     @JoinColumn(name = "ID_ORGANISMO")
     private Organismo organismo;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoHorario infoHorario;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoServicios infoServicios;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoTeletrabajo infoTeletrabajo;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoInstalaciones infoInstalaciones;
-
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoMovilidad infoMovilidad;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoPuesto infoPuesto;
 
-    @OneToOne(mappedBy = "encuesta", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "encuesta")
     private InfoSalario infoSalario;
 
     public Encuesta() {

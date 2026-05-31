@@ -2,6 +2,8 @@ package com.tfg.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -20,6 +22,7 @@ public class InfoInstalaciones implements Serializable {
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
+    @JsonIgnore
     private Encuesta encuesta;
     private String accesibles;
     private String hayDuchas;
