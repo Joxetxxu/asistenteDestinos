@@ -9,7 +9,7 @@ export function InfoInstalaciones({ infoInstalaciones }: InfoInstalacionesProps)
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='accesibles'>
                         <Form.Label>Son accesibles</Form.Label>
-                        <Form.Select size="lg" value={infoInstalaciones.accesibles}>
+                        <Form.Select size="lg" defaultValue={infoInstalaciones.accesibles}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -18,7 +18,7 @@ export function InfoInstalaciones({ infoInstalaciones }: InfoInstalacionesProps)
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId='bañoAdaptado'>
                         <Form.Label>Baños adaptados</Form.Label>
-                        <Form.Select size="lg" value={infoInstalaciones.bañoAdaptado}>
+                        <Form.Select size="lg" defaultValue={infoInstalaciones.bañoAdaptado}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -27,7 +27,7 @@ export function InfoInstalaciones({ infoInstalaciones }: InfoInstalacionesProps)
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId='hayDuchas'>
                         <Form.Label>Hay duchas</Form.Label>
-                        <Form.Select size="lg" value={infoInstalaciones.hayDuchas}>
+                        <Form.Select size="lg" defaultValue={infoInstalaciones.hayDuchas}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -36,7 +36,7 @@ export function InfoInstalaciones({ infoInstalaciones }: InfoInstalacionesProps)
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId='gimnasio'>
                         <Form.Label>Hay gimnasio</Form.Label>
-                        <Form.Select size="lg" value={infoInstalaciones.gimnasio}>
+                        <Form.Select size="lg" defaultValue={infoInstalaciones.gimnasio}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -51,7 +51,6 @@ export function InfoInstalaciones({ infoInstalaciones }: InfoInstalacionesProps)
                         <Form.Control
                             required
                             type='text'
-                            placeholder="Condiciones"
                             size="lg"
                             defaultValue={infoInstalaciones.otros}
                         />

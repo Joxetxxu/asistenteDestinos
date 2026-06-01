@@ -1,26 +1,124 @@
-import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
-import { RastroMigas } from "../../components/RastroMigas";
-import { InfoGeneral } from "../../components/InfoGeneral";
-import type { Encuesta } from "../../ts/interfaces";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { getEncuestas } from "../../ts/restClient";
-import { InfoPuesto } from "../../components/InfoPuesto";
-import { InfoSalario } from "../../components/InfoSalario";
+import { Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
+import { InfoGeneral } from "../../components/InfoGeneral";
 import { InfoHorario } from "../../components/InfoHorario";
 import { InfoInstalaciones } from "../../components/InfoInstalaciones";
-import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
-import { InfoServicios } from "../../components/InfoServicios";
 import { InfoMovilidad } from "../../components/InfoMovilidad";
+import { InfoPuesto } from "../../components/InfoPuesto";
+import { InfoSalario } from "../../components/InfoSalario";
+import { InfoServicios } from "../../components/InfoServicios";
+import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
+import { RastroMigas } from "../../components/RastroMigas";
+import type { Encuesta } from "../../ts/interfaces";
 
 
 export function Rellenar() {
 
-    const [encuestas, setEncuestas] = useState<Encuesta[]>([]);
-    const [visible, setVisible] = useState<Boolean>(false);
+    const [encuesta, setEncuesta] = useState<Encuesta>();
     useEffect(() => {
-        getEncuestas().then((data) => {
-            setEncuestas(data)
-            setVisible(true)
+        setEncuesta({
+            id: 0,
+            nombre: '',
+            fechaRealizacion: dayjs().valueOf(),
+            fechaIncorporacion: dayjs().valueOf(),
+            direccion: {
+                id: 0,
+                calle: '',
+                numero: '',
+                codigoPostal: '',
+                municipio: {
+                    CODIGO: '',
+                    descripcion: '',
+                    provincia: {
+                        CODIGO: '',
+                        descripcion: ''
+                    }
+                }
+            },
+            organismo: {
+                dir3: '',
+                unidadOrganica: '',
+                nivel: 0
+            },
+            infoHorario: {
+                id: 0,
+                horario: '',
+                tardesObligatorias: '',
+                hayHorarioVerano: '',
+                horarioVeranoCondiciones: '',
+            },
+            infoServicios: {
+                id: 0,
+                hayApartamiento: '',
+                hayCargador: '',
+                condicionesParking: '',
+                hayAparcabicis: '',
+                hayAutobuses: '',
+                hayComedor: '',
+                hayCafeteria: '',
+                precioMenu: '',
+                hayGuarderia: '',
+                cuantiaGuarderia: '',
+                direccion: {
+                    id: 0,
+                    calle: '',
+                    numero: '',
+                    codigoPostal: '',
+                    municipio: {
+                        CODIGO: '',
+                        descripcion: '',
+                        provincia: {
+                            CODIGO: '',
+                            descripcion: ''
+                        }
+                    }
+                }
+            },
+            infoTeletrabajo: {
+                id: 0,
+                hayTeletrabajo: '',
+                requisitos: '',
+                dias: '',
+                otraCCAA: '',
+                conciliacion: '',
+            },
+            infoInstalaciones: {
+                id: 0,
+                accesibles: '',
+                hayDuchas: '',
+                bañoAdaptado: '',
+                gimnasio: '',
+                otros: '',
+            },
+            infoMovilidad: {
+                id: 0,
+                movilidadInterna: '',
+                posibilidadSalir: '',
+                comisionServicio: '',
+            },
+            infoPuesto: {
+                id: 0,
+                nivel: '',
+                equipoTIC: '',
+                infoSistemas: '',
+                infoDesarrollo: '',
+                tipoProyectos: '',
+                proyectosFuturos: '',
+                hayOficinaCalidad: '',
+                funciones: '',
+                hayQueViejar: ''
+            },
+            infoSalario: {
+                id: 0,
+                hayProductividad: '',
+                cuantiaProductividad: '',
+                condicionesProductividad: '',
+                hayPagaObjetivos: '',
+                cuantiaPagaObjetivos: '',
+                hayGuardias: '',
+                observaciones: '',
+            },
         })
     }, [])
 
@@ -37,7 +135,7 @@ export function Rellenar() {
     };
 
     return <>
-        {visible &&
+        {encuesta &&
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
@@ -46,7 +144,7 @@ export function Rellenar() {
                 </Row>
                 <Row>
                     <Col xs={12} >
-                        <p className="tituloMenu">Rellenar Cuestionario {encuestas.length}</p>
+                        <p className="tituloMenu">Rellenar Cuestionario</p>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <Tabs
                                 defaultActiveKey="general"
@@ -55,28 +153,28 @@ export function Rellenar() {
                                 fill
                             >
                                 <Tab eventKey="general" title="Información General" >
-                                    <InfoGeneral encuesta={encuestas[0]} ></InfoGeneral>
+                                    <InfoGeneral encuesta={encuesta} ></InfoGeneral>
                                 </Tab>
                                 <Tab eventKey="puesto" title="Datos del puesto">
-                                    <InfoPuesto infoPuesto={encuestas[0].infoPuesto} ></InfoPuesto>
+                                    <InfoPuesto infoPuesto={encuesta.infoPuesto} ></InfoPuesto>
                                 </Tab>
                                 <Tab eventKey="salario" title="Salario">
-                                    <InfoSalario infoSalario={encuestas[0].infoSalario}></InfoSalario>
+                                    <InfoSalario infoSalario={encuesta.infoSalario}></InfoSalario>
                                 </Tab>
                                 <Tab eventKey="horario" title="Horario">
-                                    <InfoHorario infoHorario={encuestas[0].infoHorario}></InfoHorario>
+                                    <InfoHorario infoHorario={encuesta.infoHorario}></InfoHorario>
                                 </Tab>
                                 <Tab eventKey="instalaciones" title="Instalaciones">
-                                    <InfoInstalaciones infoInstalaciones={encuestas[0].infoInstalaciones}></InfoInstalaciones>
+                                    <InfoInstalaciones infoInstalaciones={encuesta.infoInstalaciones}></InfoInstalaciones>
                                 </Tab>
                                 <Tab eventKey="servicios" title="Servicios">
-                                    <InfoServicios infoServicios={encuestas[0].infoServicios}></InfoServicios>
+                                    <InfoServicios infoServicios={encuesta.infoServicios}></InfoServicios>
                                 </Tab>
                                 <Tab eventKey="telebrabajo" title="Telebrabajo">
-                                    <InfoTeletrabajo infoTeletrabajo={encuestas[0].infoTeletrabajo}></InfoTeletrabajo>
+                                    <InfoTeletrabajo infoTeletrabajo={encuesta.infoTeletrabajo}></InfoTeletrabajo>
                                 </Tab>
                                 <Tab eventKey="movilidad" title="Movilidad">
-                                    <InfoMovilidad infoMovilidad={encuestas[0].infoMovilidad}></InfoMovilidad>
+                                    <InfoMovilidad infoMovilidad={encuesta.infoMovilidad}></InfoMovilidad>
                                 </Tab>
                             </Tabs>
 

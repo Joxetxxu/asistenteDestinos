@@ -16,6 +16,8 @@ import { TablasMaestras } from './pages/admin/maestras/TablasMaestras';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
+import { Listado } from './pages/admin/encuestas/Listado';
+import { Detalle } from './pages/admin/encuestas/Detalle';
 function App() {
 
   const [show, setShow] = useState(false);
@@ -79,6 +81,12 @@ function App() {
     },
     {
       path: "/rellenarCuestionario", element: <Rellenar />,
+    },
+    {
+      path: "/listado", element: <Listado />,
+    },
+    {
+      path: "/listado/:id", element: <Detalle />,
     }
 
   ]);

@@ -13,7 +13,6 @@ export function InfoHorario({ infoHorario }: InfoHorarioProps) {
                             required
                             type='text'
                             size="lg"
-                            placeholder="Condiciones para las pagas"
                             defaultValue={infoHorario.horario}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -21,7 +20,7 @@ export function InfoHorario({ infoHorario }: InfoHorarioProps) {
 
                     <Form.Group as={Col} md="2" controlId='tardesObligatorias'>
                         <Form.Label>Tardes Obligatorias</Form.Label>
-                        <Form.Select size="lg" value={infoHorario.tardesObligatorias}>
+                        <Form.Select size="lg" defaultValue={infoHorario.tardesObligatorias}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -30,7 +29,7 @@ export function InfoHorario({ infoHorario }: InfoHorarioProps) {
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId='hayHorarioVerano'>
                         <Form.Label>Hay horario de verano</Form.Label>
-                        <Form.Select size="lg" value={infoHorario.hayHorarioVerano}>
+                        <Form.Select size="lg" defaultValue={infoHorario.hayHorarioVerano}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -44,9 +43,7 @@ export function InfoHorario({ infoHorario }: InfoHorarioProps) {
                         <Form.Label>Condiciones</Form.Label>
                         <Form.Control
                             required
-                            type='text'
-                            placeholder="Condiciones"
-                            size="lg"
+                            type='text' size="lg"
                             defaultValue={infoHorario.horarioVeranoCondiciones}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

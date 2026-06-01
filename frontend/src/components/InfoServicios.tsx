@@ -9,7 +9,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayApartamiento'>
                         <Form.Label>Hay aparcamiento </Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayApartamiento}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayApartamiento}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -19,7 +19,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
 
                     <Form.Group as={Col} md="2" controlId='hayAparcabicis'>
                         <Form.Label>Hay aparcabicis</Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayAparcabicis}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayAparcabicis}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -29,7 +29,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
 
                     <Form.Group as={Col} md="2" controlId='hayCargador'>
                         <Form.Label>Hay cargador</Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayCargador}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayCargador}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -42,7 +42,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             required
                             type='text'
                             size="lg"
-                            placeholder="Condiciones para el parking"
                             defaultValue={infoServicios.condicionesParking}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -51,7 +50,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayAutobuses'>
                         <Form.Label>Hay autobuses </Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayAutobuses}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayAutobuses}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -61,7 +60,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
 
                     <Form.Group as={Col} md="2" controlId='hayComedor'>
                         <Form.Label>Hay comedor </Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayComedor}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayComedor}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -71,7 +70,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
 
                     <Form.Group as={Col} md="2" controlId='hayCafeteria'>
                         <Form.Label>Hay cafetería </Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayCafeteria}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayCafeteria}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -84,7 +83,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             required
                             type='text'
                             size="lg"
-                            placeholder="Precio menú"
                             defaultValue={infoServicios.precioMenu}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -93,7 +91,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayCafeteria'>
                         <Form.Label>Hay Guardería </Form.Label>
-                        <Form.Select size="lg" value={infoServicios.hayGuarderia}>
+                        <Form.Select size="lg" defaultValue={infoServicios.hayGuarderia}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -105,7 +103,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                         <Form.Control
                             required
                             type='number'
-                            placeholder="Cuantía guardería"
                             size="lg"
                             defaultValue={infoServicios.cuantiaGuarderia}
                         />
@@ -119,7 +116,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="calle"
                                 size="lg"
                                 defaultValue={infoServicios.direccion.calle}
                             />
@@ -131,9 +127,8 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="numero"
-                                size="lg"
-                                defaultValue={infoServicios.direccion.numero}
++                                size="lg"
+                            defaultValue={infoServicios.direccion.numero}
                             />
                         </InputGroup>
                     </Form.Group>
@@ -143,7 +138,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Código postal"
                                 size="lg"
                                 defaultValue={infoServicios.direccion.codigoPostal}
                             />
@@ -155,7 +149,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Municipio"
                                 size="lg"
                                 defaultValue={infoServicios.direccion.municipio.descripcion}
                             />
@@ -167,7 +160,6 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Provincia"
                                 size="lg"
                                 defaultValue={infoServicios.direccion.municipio.provincia.descripcion}
                             />

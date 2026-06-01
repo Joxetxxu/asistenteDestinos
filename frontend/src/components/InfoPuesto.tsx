@@ -12,7 +12,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="Nivel"
                             size="lg"
                             defaultValue={infoPuesto.nivel}
                         />
@@ -23,7 +22,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="id"
                             size="lg"
                             defaultValue={infoPuesto.funciones}
                         />
@@ -34,7 +32,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="equipoTIC"
                             size="lg"
                             defaultValue={infoPuesto.equipoTIC}
                         />
@@ -47,8 +44,7 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="Hay oficina de calidad"
-                            size="lg"
+                            ç size="lg"
                             defaultValue={infoPuesto.hayOficinaCalidad}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -58,7 +54,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="Tipo de proyectos"
                             size="lg"
                             defaultValue={infoPuesto.tipoProyectos}
                         />
@@ -69,7 +64,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="THay que viajar"
                             size="lg"
                             defaultValue={infoPuesto.hayQueViejar}
                         />
@@ -82,7 +76,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             as="textarea"
-                            placeholder="Tecnologías de desarrollo"
                             size="lg" rows={3}
                             defaultValue={infoPuesto.infoDesarrollo}
                         />
@@ -93,7 +86,6 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                         <Form.Control
                             required
                             as="textarea"
-                            placeholder="Tecnologías de Sistemas"
                             size="lg" rows={3}
                             defaultValue={infoPuesto.infoSistemas}
                         />

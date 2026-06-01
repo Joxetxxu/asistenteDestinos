@@ -9,7 +9,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayProductividad'>
                         <Form.Label>Hay productividad </Form.Label>
-                        <Form.Select size="lg" value={infoSalario.hayProductividad}>
+                        <Form.Select size="lg" defaultValue={infoSalario.hayProductividad}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -20,8 +20,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                         <Form.Label>Cuantía productividad al año</Form.Label>
                         <Form.Control
                             required
-                            type='number' 
-                            placeholder="Cuantía productividad al año"
+                            type='number'
                             size="lg"
                             defaultValue={infoSalario.cuantiaProductividad}
                         />
@@ -29,7 +28,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                     </Form.Group>
                     <Form.Group as={Col} md="2" controlId='hayPagaObjetivos'>
                         <Form.Label>Paga objetivos</Form.Label>
-                        <Form.Select size="lg" value={infoSalario.hayPagaObjetivos}>
+                        <Form.Select size="lg" defaultValue={infoSalario.hayPagaObjetivos}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -40,7 +39,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                         <Form.Label>Cuantía Paga objetivos al año</Form.Label>
                         <Form.Control
                             required
-                            type='number' step='0.01' value='0.00' placeholder='0.00'
+                            type='number' step='0.01' value='0.00'
                             size="lg"
                             defaultValue={infoSalario.cuantiaPagaObjetivos}
                         />
@@ -54,7 +53,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                             required
                             type='text'
                             size="lg"
-                            placeholder="Condiciones para las pagas"
+
                             defaultValue={infoSalario.condicionesProductividad}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -67,7 +66,6 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                             required
                             type='text'
                             size="lg"
-                            placeholder="Condiciones para las guardias"
                             defaultValue={infoSalario.hayGuardias}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -80,7 +78,6 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                             required
                             type='textarea'
                             size="lg"
-                            placeholder="observaciones"
                             defaultValue={infoSalario.observaciones}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

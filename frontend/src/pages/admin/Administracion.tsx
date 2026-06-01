@@ -33,7 +33,7 @@ export function Administracion() {
                         </Card>
 
 
-                        <Card key="op2" onClick={() => { navigate("/mapa") }}>
+                        <Card key="op2" onClick={() => { navigate("/listado") }}>
                             <Card.Body>
                                 <Container>
                                     <Row>

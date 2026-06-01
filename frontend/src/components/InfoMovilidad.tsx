@@ -12,7 +12,6 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                         <Form.Control
                             required
                             as='textarea' rows={3}
-                            placeholder="Hay movilidad interna dentro del organismo"
                             size="lg"
                             defaultValue={infoMovilidad.movilidadInterna}
                         />
@@ -25,7 +24,6 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                         <Form.Control
                             required
                             as='textarea' rows={3}
-                            placeholder="Infomación sobre sobre comisiones de servicio"
                             size="lg"
                             defaultValue={infoMovilidad.comisionServicio}
                         />
@@ -38,7 +36,6 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                         <Form.Control
                             required
                             as='textarea' rows={3}
-                            placeholder="Facilidad para salir del organismo"
                             size="lg"
                             defaultValue={infoMovilidad.posibilidadSalir}
                         />

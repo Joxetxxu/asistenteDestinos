@@ -70,7 +70,7 @@ export interface Organismo {
   dir3: string
   unidadOrganica: string
   nivel: number
-  organoPadre: Organismo
+  organoPadre?: Organismo
 }
 
 export interface InfoHorario {
@@ -111,7 +111,7 @@ export interface InfoInstalaciones {
   hayDuchas: string
   bañoAdaptado: string
   gimnasio: string
-  otros: any
+  otros: string
 }
 
 export interface InfoMovilidad {

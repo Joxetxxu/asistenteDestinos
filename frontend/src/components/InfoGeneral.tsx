@@ -27,7 +27,6 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                         <Form.Control
                             required
                             type="text"
-                            placeholder="Nombre"
                             size="lg"
                             defaultValue={encuesta.nombre}
                         />
@@ -49,13 +48,13 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} md="12"  controlId='unidadOrganica'>
+                    <Form.Group as={Col} md="12" controlId='unidadOrganica'>
                         <Form.Label>Organismo</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="id"
+
                                 size="lg"
                                 defaultValue={encuesta.organismo.unidadOrganica}
                             />
@@ -71,31 +70,31 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="calle"
+
                                 size="lg"
                                 defaultValue={encuesta.direccion.calle}
                             />
                         </InputGroup>
                     </Form.Group>
-                     <Form.Group as={Col} md="1" controlId='numero'>
+                    <Form.Group as={Col} md="1" controlId='numero'>
                         <Form.Label>Número</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="numero"
+
                                 size="lg"
                                 defaultValue={encuesta.direccion.numero}
                             />
                         </InputGroup>
                     </Form.Group>
-                     <Form.Group as={Col} md="3" controlId='codigoPostal'>
+                    <Form.Group as={Col} md="3" controlId='codigoPostal'>
                         <Form.Label>Código postal</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Código postal"
+
                                 size="lg"
                                 defaultValue={encuesta.direccion.codigoPostal}
                             />
@@ -107,19 +106,17 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Municipio"
                                 size="lg"
                                 defaultValue={encuesta.direccion.municipio.descripcion}
                             />
                         </InputGroup>
                     </Form.Group>
-                     <Form.Group as={Col} md="6" controlId='provincia' className="mt-3">
+                    <Form.Group as={Col} md="6" controlId='provincia' className="mt-3">
                         <Form.Label>Provincia</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Provincia"
                                 size="lg"
                                 defaultValue={encuesta.direccion.municipio.provincia.descripcion}
                             />

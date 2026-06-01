@@ -9,7 +9,7 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayTeletrabajo'>
                         <Form.Label>Hay teletrabajo </Form.Label>
-                        <Form.Select size="lg" value={infoTeletrabajo.hayTeletrabajo}>
+                        <Form.Select size="lg" defaultValue={infoTeletrabajo.hayTeletrabajo}>
                             <option></option>
                             <option value="S">SI</option>
                             <option value="N">NO</option>
@@ -21,7 +21,6 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                         <Form.Control
                             required
                             type='number'
-                            placeholder="Requisitos para conseguirlos"
                             size="lg"
                             defaultValue={infoTeletrabajo.requisitos}
                         />
@@ -32,7 +31,6 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                         <Form.Control
                             required
                             type='text'
-                            placeholder="Dias"
                             size="lg"
                             defaultValue={infoTeletrabajo.dias}
                         />
@@ -45,7 +43,6 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                         <Form.Control
                             required
                             type='text'
-                            placeholder="Se puede trasladar a otras comunidades autónomas"
                             size="lg"
                             defaultValue={infoTeletrabajo.otraCCAA}
                         />
@@ -57,7 +54,6 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                         <Form.Control
                             required
                             type='text'
-                            placeholder="Facilidad para conciliar"
                             size="lg"
                             defaultValue={infoTeletrabajo.conciliacion}
                         />
