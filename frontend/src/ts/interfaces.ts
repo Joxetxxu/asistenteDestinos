@@ -177,7 +177,10 @@ export interface InfoServiciosProps {
 export interface InfoTeletrabajoProps {
   infoTeletrabajo: InfoTeletrabajo
 }
+<<<<<<< HEAD
 
 export interface InfoMovilidadProps {
   infoMovilidad: InfoMovilidad
 }
+=======
+>>>>>>> 4c82e6caa5ae618f4b19217658d1efbe20efab4a

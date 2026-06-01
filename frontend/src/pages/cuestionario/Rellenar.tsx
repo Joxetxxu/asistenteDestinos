@@ -10,7 +10,10 @@ import { InfoHorario } from "../../components/InfoHorario";
 import { InfoInstalaciones } from "../../components/InfoInstalaciones";
 import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
 import { InfoServicios } from "../../components/InfoServicios";
+<<<<<<< HEAD
 import { InfoMovilidad } from "../../components/InfoMovilidad";
+=======
+>>>>>>> 4c82e6caa5ae618f4b19217658d1efbe20efab4a
 
 
 export function Rellenar() {
@@ -76,7 +79,11 @@ export function Rellenar() {
                                     <InfoTeletrabajo infoTeletrabajo={encuestas[0].infoTeletrabajo}></InfoTeletrabajo>
                                 </Tab>
                                 <Tab eventKey="movilidad" title="Movilidad">
+<<<<<<< HEAD
                                     <InfoMovilidad infoMovilidad={encuestas[0].infoMovilidad}></InfoMovilidad>
+=======
+                                    <h1>Movilidad</h1>
+>>>>>>> 4c82e6caa5ae618f4b19217658d1efbe20efab4a
                                 </Tab>
                             </Tabs>
 
