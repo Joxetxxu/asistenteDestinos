@@ -10,10 +10,7 @@ import { InfoHorario } from "../../components/InfoHorario";
 import { InfoInstalaciones } from "../../components/InfoInstalaciones";
 import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
 import { InfoServicios } from "../../components/InfoServicios";
-<<<<<<< HEAD
 import { InfoMovilidad } from "../../components/InfoMovilidad";
-=======
->>>>>>> 4c82e6caa5ae618f4b19217658d1efbe20efab4a
 
 
 export function Rellenar() {
