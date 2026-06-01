@@ -79,11 +79,7 @@ export function Rellenar() {
                                     <InfoTeletrabajo infoTeletrabajo={encuestas[0].infoTeletrabajo}></InfoTeletrabajo>
                                 </Tab>
                                 <Tab eventKey="movilidad" title="Movilidad">
-<<<<<<< HEAD
                                     <InfoMovilidad infoMovilidad={encuestas[0].infoMovilidad}></InfoMovilidad>
-=======
-                                    <h1>Movilidad</h1>
->>>>>>> 4c82e6caa5ae618f4b19217658d1efbe20efab4a
                                 </Tab>
                             </Tabs>
 
