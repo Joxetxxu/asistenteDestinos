@@ -1,8 +1,10 @@
 package com.tfg.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,13 +22,26 @@ public class EncuestaController {
     }
 
     @GetMapping("/encuestas")
-    String getOrganismos() {
+    String getEncuestas() {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Encuesta> encuestas = encuestaRepository.findAll();
         try {
             String dtoAsString = mapper.writeValueAsString(encuestas);
 
+            return dtoAsString;
+        } catch (JsonProcessingException e) {
+            return e.getMessage();
+        }
+    }
+
+    @GetMapping("/encuestas/{id}")
+    String getEncuesta(@PathVariable Long id) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        Optional<Encuesta> encuesta = encuestaRepository.findById(id);
+        try {
+            String dtoAsString = mapper.writeValueAsString(encuesta.get());
             return dtoAsString;
         } catch (JsonProcessingException e) {
             return e.getMessage();

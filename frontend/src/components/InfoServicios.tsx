@@ -127,8 +127,8 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                             <Form.Control
                                 required
                                 type="text"
-+                                size="lg"
-                            defaultValue={infoServicios.direccion.numero}
+                                size="lg"
+                                defaultValue={infoServicios.direccion.numero}
                             />
                         </InputGroup>
                     </Form.Group>

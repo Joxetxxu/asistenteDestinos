@@ -3,7 +3,7 @@ import type { Encuesta } from "../../../ts/interfaces";
 import { Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
 
 import { RastroMigas } from "../../../components/RastroMigas";
-import { getEncuestas } from "../../../ts/restClient";
+import { getEncuesta } from "../../../ts/restClient";
 import { InfoGeneral } from "../../../components/InfoGeneral";
 import { InfoPuesto } from "../../../components/InfoPuesto";
 import { InfoSalario } from "../../../components/InfoSalario";
@@ -15,12 +15,12 @@ import { InfoMovilidad } from "../../../components/InfoMovilidad";
 import { useParams } from "react-router-dom";
 
 export function Detalle() {
-    const [encuestas, setEncuestas] = useState<Encuesta[]>([]);
+    const [encuesta, setEncuesta] = useState<Encuesta>();
     const [visible, setVisible] = useState<Boolean>(false);
     const { id } = useParams();
     useEffect(() => {
-        getEncuestas().then((data) => {
-            setEncuestas(data)
+        getEncuesta(id || "0").then((data) => {
+            setEncuesta(data)
             setVisible(true)
         })
     }, [])
@@ -38,7 +38,7 @@ export function Detalle() {
     };
 
     return <>
-        {visible &&
+        {encuesta &&
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
@@ -47,7 +47,7 @@ export function Detalle() {
                 </Row>
                 <Row>
                     <Col xs={12} >
-                        <p className="tituloMenu">Rellenar Cuestionario {encuestas.length}</p>
+                        <p className="tituloMenu">Rellenar Cuestionario </p>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <Tabs
                                 defaultActiveKey="general"
@@ -56,28 +56,28 @@ export function Detalle() {
                                 fill
                             >
                                 <Tab eventKey="general" title="Información General" >
-                                    <InfoGeneral encuesta={encuestas[0]} ></InfoGeneral>
+                                    <InfoGeneral encuesta={encuesta} ></InfoGeneral>
                                 </Tab>
                                 <Tab eventKey="puesto" title="Datos del puesto">
-                                    <InfoPuesto infoPuesto={encuestas[0].infoPuesto} ></InfoPuesto>
+                                    <InfoPuesto infoPuesto={encuesta.infoPuesto} ></InfoPuesto>
                                 </Tab>
                                 <Tab eventKey="salario" title="Salario">
-                                    <InfoSalario infoSalario={encuestas[0].infoSalario}></InfoSalario>
+                                    <InfoSalario infoSalario={encuesta.infoSalario}></InfoSalario>
                                 </Tab>
                                 <Tab eventKey="horario" title="Horario">
-                                    <InfoHorario infoHorario={encuestas[0].infoHorario}></InfoHorario>
+                                    <InfoHorario infoHorario={encuesta.infoHorario}></InfoHorario>
                                 </Tab>
                                 <Tab eventKey="instalaciones" title="Instalaciones">
-                                    <InfoInstalaciones infoInstalaciones={encuestas[0].infoInstalaciones}></InfoInstalaciones>
+                                    <InfoInstalaciones infoInstalaciones={encuesta.infoInstalaciones}></InfoInstalaciones>
                                 </Tab>
                                 <Tab eventKey="servicios" title="Servicios">
-                                    <InfoServicios infoServicios={encuestas[0].infoServicios}></InfoServicios>
+                                    <InfoServicios infoServicios={encuesta.infoServicios}></InfoServicios>
                                 </Tab>
                                 <Tab eventKey="telebrabajo" title="Telebrabajo">
-                                    <InfoTeletrabajo infoTeletrabajo={encuestas[0].infoTeletrabajo}></InfoTeletrabajo>
+                                    <InfoTeletrabajo infoTeletrabajo={encuesta.infoTeletrabajo}></InfoTeletrabajo>
                                 </Tab>
                                 <Tab eventKey="movilidad" title="Movilidad">
-                                    <InfoMovilidad infoMovilidad={encuestas[0].infoMovilidad}></InfoMovilidad>
+                                    <InfoMovilidad infoMovilidad={encuesta.infoMovilidad}></InfoMovilidad>
                                 </Tab>
                             </Tabs>
 

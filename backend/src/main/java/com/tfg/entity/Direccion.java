@@ -2,13 +2,10 @@ package com.tfg.entity;
 
 import java.io.Serializable;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -22,6 +19,8 @@ public class Direccion implements Serializable {
     private String calle;
     private String numero;
     private String codigoPostal;
+    private Float lat;
+    private Float lng;
 
     @ManyToOne
     @JoinColumn(name = "CODIGO_MUNICIPIO")

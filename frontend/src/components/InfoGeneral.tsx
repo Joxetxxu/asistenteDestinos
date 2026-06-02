@@ -112,7 +112,7 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                         </InputGroup>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId='provincia' className="mt-3">
-                        <Form.Label>Provincia</Form.Label>
+                        <Form.Label>Provincia {encuesta.direccion.lat} -  {encuesta.direccion.lng}</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required

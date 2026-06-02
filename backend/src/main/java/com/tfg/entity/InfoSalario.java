@@ -25,12 +25,13 @@ public class InfoSalario implements Serializable {
     @JsonIgnore
     private Encuesta encuesta;
     private String hayProductividad;
-    private String cuantiaProductividad;
+    private Float cuantiaProductividad;
     private String condicionesProductividad;
     private String hayPagaObjetivos;
-    private String cuantiaPagaObjetivos;
+    private Float cuantiaPagaObjetivos;
     private String hayGuardias;
     private String observaciones;
+    private Float salario;
 
     public InfoSalario() {
     }

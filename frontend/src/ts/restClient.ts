@@ -29,3 +29,8 @@ export const getEncuestas = async (): Promise<any> => {
     const response = await axios.get<Encuesta[]>(`http://localhost:8090/encuestas`);
     return response.data;
 }
+
+export const getEncuesta = async (id: string): Promise<any> => {
+    const response = await axios.get<Encuesta>("http://localhost:8090/encuestas/" + id);
+    return response.data;
+}

@@ -33,7 +33,7 @@ export interface Municipio {
 
 export type Position = {
   lat: number,
-  lng: number,
+  lng: number
 };
 export type Marcador = {
   id: number,
@@ -63,7 +63,9 @@ export interface Direccion {
   calle: string
   numero: string
   codigoPostal: string
-  municipio: Municipio
+  municipio: Municipio, 
+  lat?: number,
+  lng?: number
 }
 
 export interface Organismo {
@@ -143,6 +145,7 @@ export interface InfoSalario {
   cuantiaPagaObjetivos: string
   hayGuardias: string
   observaciones: string
+  salario: number
 }
 
 

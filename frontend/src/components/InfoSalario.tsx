@@ -7,6 +7,16 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
         {infoSalario &&
             <Container className="mt-5" >
                 <Row className="mb-3">
+                    <Form.Group as={Col} md="3" controlId='salario' className="right">
+                        <Form.Label>Salario base anual</Form.Label>
+                        <Form.Control
+                            required
+                            type='number'
+                            size="lg"
+                            defaultValue={infoSalario.salario}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
                     <Form.Group as={Col} md="2" controlId='hayProductividad'>
                         <Form.Label>Hay productividad </Form.Label>
                         <Form.Select size="lg" defaultValue={infoSalario.hayProductividad}>
@@ -16,8 +26,8 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                         </Form.Select>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="4" controlId='cuantiaProductividad' className="right">
-                        <Form.Label>Cuantía productividad al año</Form.Label>
+                    <Form.Group as={Col} md="2" controlId='cuantiaProductividad' className="right">
+                        <Form.Label>Cuantía productividad</Form.Label>
                         <Form.Control
                             required
                             type='number'
@@ -35,11 +45,11 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                         </Form.Select>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="4" controlId='cuantiaPagaObjetivos' className="right">
-                        <Form.Label>Cuantía Paga objetivos al año</Form.Label>
+                    <Form.Group as={Col} md="3" controlId='cuantiaPagaObjetivos' className="right">
+                        <Form.Label>Cuantía Paga objetivos</Form.Label>
                         <Form.Control
                             required
-                            type='number' step='0.01' value='0.00'
+                            type='number'
                             size="lg"
                             defaultValue={infoSalario.cuantiaPagaObjetivos}
                         />
