@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Encuesta } from './interfaces';
+import type { Encuesta, Marcador } from './interfaces';
 
 
 export const getPerfil = async (): Promise<String> => {
@@ -32,5 +32,10 @@ export const getEncuestas = async (): Promise<any> => {
 
 export const getEncuesta = async (id: string): Promise<any> => {
     const response = await axios.get<Encuesta>("http://localhost:8090/encuestas/" + id);
+    return response.data;
+}
+
+export const getMarcadores = async (): Promise<any> => {
+    const response = await axios.get<Marcador[]>(`http://localhost:8090/marcadores`);
     return response.data;
 }

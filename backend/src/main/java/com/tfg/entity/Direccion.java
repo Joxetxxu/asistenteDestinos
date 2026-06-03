@@ -19,8 +19,8 @@ public class Direccion implements Serializable {
     private String calle;
     private String numero;
     private String codigoPostal;
-    private Float lat;
-    private Float lng;
+    private String lat;
+    private String lng;
 
     @ManyToOne
     @JoinColumn(name = "CODIGO_MUNICIPIO")

@@ -8,23 +8,13 @@ import {
     useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import type { Marcador } from "../../../ts/interfaces";
-
-const locations : Marcador[]= [
-    {
-        id: 1,
-        name: "Puerta del Sol",
-        position: { lat: 40.4169, lng: -3.7035 },
-    },
-    {
-        id: 2,
-        name: "Plaza Mayor",
-        position: { lat: 40.4155, lng: -3.7074 },
-    },
-];
+import { getMarcadores } from "../../../ts/restClient";
 
 function PlaceAutocomplete({ onSelect }) {
     const containerRef = useRef(null);
     const places = useMapsLibrary("places");
+
+
 
     useEffect(() => {
         if (!places || !containerRef.current) return;
@@ -56,7 +46,9 @@ function PlaceAutocomplete({ onSelect }) {
         );
 
         return () => {
-            containerRef.current.innerHTML = "";
+            if (containerRef && containerRef.current) {
+                containerRef.current.innerHTML = "";
+            };
         };
     }, [places]);
 
@@ -77,11 +69,23 @@ function MapController({ center }) {
 }
 
 export default function MapComponent() {
-    const [selectedPlace, setSelectedPlace] =  useState(null);
+    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [locations, setLocations] = useState<Marcador[]>([]);
+
+    useEffect(() => {
+        // Consultamos marcadores
+        getMarcadores().then(
+            (data) => {
+                setLocations(data)
+                console.log("Marcadores cargados:", data);
+            }
+        )
+    }, []);
+
     // AIzaSyDechEH4g9wJaJ0_L6IrLB0b6NiaYSHt_U
     return (
         <APIProvider
-            apiKey="xxx"
+            apiKey="AIzaSyDechEH4g9wJaJ0_L6IrLB0b6NiaYSHt_U"
             libraries={["places"]}
         >
             <div

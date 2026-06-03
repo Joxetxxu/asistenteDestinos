@@ -1,6 +1,7 @@
 package com.tfg.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Marcador implements Serializable {
 
@@ -9,6 +10,13 @@ public class Marcador implements Serializable {
     private Position position = new Position();
 
     public Marcador() {
+    }
+
+    public Marcador(Long id, String name, String lat, String lng) {
+        this.name = name;
+        this.position.setLat( new BigDecimal(lat) );
+        this.position.setLng( new BigDecimal(lng) );
+        this.id = id;
     }
 
     public Long getId() {

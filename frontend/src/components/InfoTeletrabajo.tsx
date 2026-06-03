@@ -20,7 +20,7 @@ export function InfoTeletrabajo({ infoTeletrabajo }: InfoTeletrabajoProps) {
                         <Form.Label>Requisitos para conseguirlos</Form.Label>
                         <Form.Control
                             required
-                            type='number'
+                            type='text'
                             size="lg"
                             defaultValue={infoTeletrabajo.requisitos}
                         />
