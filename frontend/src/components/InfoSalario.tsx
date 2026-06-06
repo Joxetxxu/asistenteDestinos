@@ -70,7 +70,7 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId='hayGuardias' className="right">
+                    <Form.Group as={Col} md="12" controlId='hayGuardias'>
                         <Form.Label>Hay guardias</Form.Label>
                         <Form.Control
                             required

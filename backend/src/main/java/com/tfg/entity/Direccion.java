@@ -22,6 +22,7 @@ public class Direccion implements Serializable {
     private String lat;
     private String lng;
 
+    
     @ManyToOne
     @JoinColumn(name = "CODIGO_MUNICIPIO")
     private Municipio municipio;
