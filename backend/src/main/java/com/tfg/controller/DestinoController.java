@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tfg.entity.Destino;
 import com.tfg.repository.DestinoRepository;
 
@@ -28,12 +26,10 @@ public class DestinoController {
     }
 
     @GetMapping("/asistente/{criterio1}/{criterio2}/{criterio3}")
-    public  List<Destino> getDestinos(@PathVariable String criterio1, @PathVariable String criterio2,
+    public List<Destino> getDestinos(@PathVariable String criterio1, @PathVariable String criterio2,
             @PathVariable String criterio3) {
-        ObjectMapper mapper = new ObjectMapper();
 
         List<Destino> x = destinoRepository.findAll();
-        String dtoAsString;
         try {
 
             // Calcular el salario mínimo y máximo para normalizar los datos
@@ -48,10 +44,8 @@ public class DestinoController {
             for (int i = 0; i < x.size(); i++) {
                 x.get(i).setOrden(i + 1);
             }
-
-            dtoAsString = mapper.writeValueAsString(x);
             return x;
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             return x;
         }
     }
@@ -71,8 +65,8 @@ public class DestinoController {
         for (Destino d : destinos) {
 
             float mediaPonderada = getValorColumna(d, criterio1) * pesoCriterio1 +
-                                   getValorColumna(d, criterio2) * pesoCriterio2 +
-                                   getValorColumna(d, criterio3) * pesoCriterio3;
+                    getValorColumna(d, criterio2) * pesoCriterio2 +
+                    getValorColumna(d, criterio3) * pesoCriterio3;
             d.setMediaPonderada(mediaPonderada);
         }
     }
@@ -86,7 +80,7 @@ public class DestinoController {
                 return (destino.getTeletrabajo() * 100.0f / destino.getEncuestas());
             case "viajar":
                 // es algo negativo, así que se hace de forma inversa
-                return  100.0f - (destino.getViajar() * 100.0f / destino.getEncuestas());
+                return 100.0f - (destino.getViajar() * 100.0f / destino.getEncuestas());
             case "accesible":
                 // es algo negativo, así que se hace de forma inversa
             case "tardes":
@@ -95,7 +89,14 @@ public class DestinoController {
                 return (destino.getAparamiento() * 100.0f / destino.getEncuestas());
             case "guarderia":
                 return (destino.getGuarderia() * 100.0f / destino.getEncuestas());
-
+            case "fiabilidad":
+                if (destino.getEncuestas() < 10) {
+                    return 0.0f;
+                } else if (destino.getEncuestas() < 30) {
+                    return 50.0f;
+                } else {
+                    return 100.0f;
+                }
             default:
                 return 0.0f;
         }

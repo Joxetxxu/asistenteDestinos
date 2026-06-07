@@ -1,6 +1,6 @@
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { RastroMigas } from "../../components/RastroMigas";
 import type { Destino } from "../../ts/interfaces";
@@ -9,21 +9,30 @@ import { getDestinos } from "../../ts/restClient";
 export function Asistente() {
 
     const [destinos, setDestinos] = useState<Destino[]>([]);
+    const [criterio1, setCriterio1] = useState<string>("");
+    const [criterio2, setCriterio2] = useState<string>("");
+    const [criterio3, setCriterio3] = useState<string>("");
+
     let navigate = useNavigate();
 
     useEffect(() => {
-        getDestinos("sueldoTotal", "viajar", "aparcamiento").then(
-            (data) => {
-                setDestinos(data)
-            }
-        )
+        //hacerBusqueda(setDestinos);
 
     }, [])
 
 
+    function hacerBusqueda() {
+        getDestinos(criterio1, criterio2, criterio3).then(
+            (data) => {
+                setDestinos(data);
+            }
+        );
+    }
+
+
     const columns: GridColDef[] = [
         {
-            field: 'mediaPonderada', headerName: 'Acierto', flex: 1, headerClassName: 'cabeceratabla', renderCell: (params) => (
+            field: 'mediaPonderada', headerName: 'Coincidencia', flex: 1, headerClassName: 'cabeceratabla', renderCell: (params) => (
                 params.row.mediaPonderada.toFixed(2) + " %"
             )
         },
@@ -63,9 +72,6 @@ export function Asistente() {
             )
         }
     ];
-
-
-
     return <Container>
         <Row>
             <Col xs={12} md={6}>
@@ -74,10 +80,76 @@ export function Asistente() {
         </Row>
         <Row>
             <Col xs={12} >
-                <p className="tituloMenu">Buscar destinos</p>
+                <p className="tituloMenu">Buscador de destinos</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col xs={12} >
+                <div className="d-grid gap-2">
+                    <Form>
+                        <h2 className="subtituloMenu">
+                            Seleccion los criterios que más te interesen para encontrar el destino que mejor se adapte a tus necesidades
+                        </h2>
+                        <Container className="mt-5" >
+                            <Row className="mb-3">
+                                <Form.Group as={Col} md="3" className="mb-3" controlId="exampleForm.ControlInput1"  >
+                                    <Form.Label> Primer criterio (50% de peso)</Form.Label>
+                                    <Form.Select aria-label="Default select example" value={criterio1} onChange={(e) => setCriterio1(e.target.value)}>
+                                        <option value="">Selecciona un criterio</option>
+                                        <option value="sueldoTotal">Salario anual</option>
+                                        <option value="teletrabajo">Tener teletrabajo</option>
+                                        <option value="viajar">Sin necesidad de viajar</option>
+                                        <option value="accesible">Instalaciones accesibles</option>
+                                        <option value="tardes">Sin trabajar tardes</option>
+                                        <option value="aparcamiento">Hay aparcamiento</option>
+                                        <option value="guarderia">Hay Guardería en el centro    </option>
+                                        <option value="fiabilidad">Fiabilidad en las encuestas</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group as={Col} md="3" className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Segundo criterio (30% de peso)</Form.Label>
+                                    <Form.Select aria-label="Default select example" value={criterio2} onChange={(e) => setCriterio2(e.target.value)}>
+                                        <option value="">Selecciona un criterio</option>
+                                        <option value="sueldoTotal">Salario anual</option>
+                                        <option value="teletrabajo">Tener teletrabajo</option>
+                                        <option value="viajar">Sin necesidad de viajar</option>
+                                        <option value="accesible">Instalaciones accesibles</option>
+                                        <option value="tardes">Sin trabajar tardes</option>
+                                        <option value="aparcamiento">Hay aparcamiento</option>
+                                        <option value="guarderia">Hay Guardería en el centro</option>
+                                        <option value="fiabilidad">Fiabilidad en las encuestas</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group as={Col} md="3" className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Tercer criterio (20% de peso)</Form.Label>
+                                    <Form.Select aria-label="Default select example" value={criterio3} onChange={(e) => setCriterio3(e.target.value)}   >
+                                        <option value="">Selecciona un criterio</option>
+                                        <option value="sueldoTotal">Salario anual</option>
+                                        <option value="teletrabajo">Tener teletrabajo</option>
+                                        <option value="viajar">Sin necesidad de viajar</option>
+                                        <option value="accesible">Instalaciones accesibles</option>
+                                        <option value="tardes">Sin trabajar tardes</option>
+                                        <option value="aparcamiento">Hay aparcamiento</option>
+                                        <option value="guarderia">Hay Guardería en el centro</option>
+                                        <option value="fiabilidad">Fiabilidad en las encuestas</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group as={Col} md="3" className="mb-3" controlId="exampleForm.ControlInput1" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
+                                    <Form.Label>    </Form.Label>
+                                    <Button variant="primary" size="lg" onClick={() => hacerBusqueda()} disabled={!(criterio1 && criterio2 && criterio3)} >Realizar búsqueda</Button>
+                                </Form.Group>
+                            </Row>
+                        </Container>
+                    </Form>
+
+                </div>
+            </Col>
+        </Row>
+        <Row>
+            <Col xs={12} >
 
                 <div style={{ height: 600, width: '100%' }}>
-                    <DataGrid
+                    {destinos.length > 0 && <DataGrid
                         rows={destinos} getRowId={(row) => row.orden}
                         columns={columns}
                         autoPageSize
@@ -87,12 +159,10 @@ export function Asistente() {
                                     params.row.orden === 3 ? 'fila-tercero' :
                                         ''
                         }
-                    />
+                    />}
                 </div>
-
-
             </Col>
         </Row>
-
-    </Container>
+    </Container >
 }
+
