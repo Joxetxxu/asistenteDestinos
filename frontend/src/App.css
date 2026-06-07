@@ -49,6 +49,12 @@
   }
 }
 
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1500px;
+    }
+}
+
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -155,7 +161,7 @@ nav {
 
 .cardlist {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   grid-gap: 5rem;
   padding: 1rem 1rem;
 

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
@@ -22,9 +23,13 @@ public class Destino implements Serializable {
     private Long accesible;
     private Long tardes;
     private Long aparamiento;
-    private Long guarderia;
+    private int guarderia;
+    @Transient
+    private Float mediaPonderada;
+    @Transient
+    private int orden;
 
-    public String getFiabilidad () {
+    public String getFiabilidad() {
         if (encuestas < 10) {
             return "Baja";
         } else if (encuestas < 30) {
@@ -61,6 +66,7 @@ public class Destino implements Serializable {
         }
         return String.format("%.2f%%", (tardes * 100.0 / encuestas));
     }
+
     public String getAparamientoPorcentaje() {
         if (encuestas == 0) {
             return "0%";

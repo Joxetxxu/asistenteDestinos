@@ -40,7 +40,7 @@ export const getMarcadores = async (): Promise<any> => {
     return response.data;
 }
 
-export const getDestinos = async (): Promise<any> => {
-    const response = await axios.get<Marcador[]>(`http://localhost:8090/asistente`);
+export const getDestinos  = async (criterio1: string, criterio2: string, criterio3: string): Promise<any> => {
+    const response = await axios.get<Marcador[]>(`http://localhost:8090/asistente/${criterio1}/${criterio2}/${criterio3}`);
     return response.data;
 }

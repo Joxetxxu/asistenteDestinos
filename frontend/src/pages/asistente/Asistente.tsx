@@ -11,7 +11,7 @@ export function Asistente() {
 
 
     useEffect(() => {
-        getDestinos().then(
+        getDestinos("sueldoTotal", "viajar", "aparcamiento").then(
             (data) => {
                 setDestinos(data)
             }
@@ -21,15 +21,18 @@ export function Asistente() {
 
 
     const columns: GridColDef[] = [
-        //     { field: 'dir3', headerName: 'DIR3', flex: 1, headerClassName: 'cabeceratabla' },
+            { field: 'mediaPonderada', headerName: 'Porcentaje Acierto',flex: 1,  headerClassName: 'cabeceratabla', renderCell: (params) => (
+                params.row.mediaPonderada.toFixed(2) + " %"
+            ) },
         //         { field: 'encuestas', headerName: 'Nº Encuestas', flex: 1, headerClassName: 'cabeceratabla' },F
-        { field: 'organismo', headerName: 'Organismo', flex: 3, headerClassName: 'cabeceratabla' , headerAlign: 'center', description: 'Nombre del organismo al que corresponde el destino' },
+        { field: 'organismo', headerName: 'Organismo', flex: 3, headerClassName: 'cabeceratabla', headerAlign: 'center', description: 'Nombre del organismo al que corresponde el destino' },
         { field: 'provincia', headerName: 'Provincia', flex: 1, headerClassName: 'cabeceratabla' },
-        { field: 'sueldoTotal', type: 'number', headerName: 'Salario (€)', flex: 1, headerClassName: 'cabeceratabla',  headerAlign: 'center',align: 'right', description: 'Salario medio en euros, calculado a partir de las encuestas realizadas' },
-        { field: 'tardesPorcentaje', headerName: 'Tardes', flex: 1, headerClassName: 'cabeceratabla',  headerAlign: 'center',align: 'right', description: 'Porcentaje de empleados que han reportado tener que trabajar por las tardes' },
-        { field: 'viajarPorcentaje', headerName: 'Viajar', flex: 1, headerClassName: 'cabeceratabla',  headerAlign: 'center',align: 'right', description: 'Porcentaje de empleados que han reportado tener que viajar para su trabajo' },
-        { field: 'guarderiaPorcentaje', headerName: 'Guardería', flex: 1, headerClassName: 'cabeceratabla',  headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado tener acceso a guardería infantil' },
-        { field: 'teletrabajoPorcentaje', headerName: 'Teletrabajo', flex: 1, headerClassName: 'cabeceratabla',  headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado poder trabajar desde casa' },
+        { field: 'sueldoTotal', type: 'number', headerName: 'Salario (€)', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Salario medio en euros, calculado a partir de las encuestas realizadas' },
+        { field: 'teletrabajoPorcentaje', headerName: 'Teletrabajo', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado poder trabajar desde casa' },
+        { field: 'guarderiaPorcentaje', headerName: 'Guardería', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado tener acceso a guardería infantil' },
+        { field: 'aparamientoPorcentaje', headerName: 'Aparcamiento', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado tener acceso a aparcamiento' },
+        { field: 'tardesPorcentaje', headerName: 'Tardes', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado tener que trabajar por las tardes' },
+        { field: 'viajarPorcentaje', headerName: 'Viajar', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Porcentaje de empleados que han reportado tener que viajar para su trabajo' },
         {
             field: 'fiabilidad', headerName: 'Fiabilidad', flex: 1, headerClassName: 'cabeceratabla', align: 'center', headerAlign: 'center', description: 'Fiabilidad de los datos, basada en el número de encuestas realizadas',
             renderCell: (params) => (
@@ -54,7 +57,7 @@ export function Asistente() {
 
                 <div style={{ height: 600, width: '100%' }}>
                     <DataGrid
-                        rows={destinos} getRowId={(row) => row.dir3}
+                        rows={destinos} getRowId={(row) => row.orden}
                         columns={columns}
                         autoPageSize
                         getRowClassName={(params) =>
