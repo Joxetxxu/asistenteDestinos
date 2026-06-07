@@ -1,6 +1,6 @@
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { RastroMigas } from "../../components/RastroMigas";
 import type { Destino } from "../../ts/interfaces";
