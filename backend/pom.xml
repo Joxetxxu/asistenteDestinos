@@ -94,6 +94,19 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- Selenium and WebDriverManager for E2E tests -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.12.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.4.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

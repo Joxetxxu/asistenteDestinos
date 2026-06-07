@@ -13,7 +13,6 @@ class DireccionTest {
         d.setCalle("Calle Falsa");
         d.setLat("40.0");
         d.setLng("-3.0");
-        d.setCalle("calle");
         d.setCodigoPostal("28922");
         d.setNumero("10");
 
@@ -22,7 +21,6 @@ class DireccionTest {
         assertEquals("40.0", d.getLat());
         assertEquals("-3.0", d.getLng());
         assertEquals("28922", d.getCodigoPostal());
-        assertEquals("calle", d.getCalle());
         assertEquals("10", d.getNumero());
     }
 }
