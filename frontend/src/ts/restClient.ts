@@ -39,3 +39,8 @@ export const getMarcadores = async (): Promise<any> => {
     const response = await axios.get<Marcador[]>(`http://localhost:8090/marcadores`);
     return response.data;
 }
+
+export const getDestinos = async (): Promise<any> => {
+    const response = await axios.get<Marcador[]>(`http://localhost:8090/asistente`);
+    return response.data;
+}

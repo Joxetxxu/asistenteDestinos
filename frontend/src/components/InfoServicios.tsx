@@ -117,7 +117,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                                 required
                                 type="text"
                                 size="lg"
-                                defaultValue={infoServicios.direccion.calle}
+                                defaultValue={infoServicios.direccion && infoServicios.direccion.calle}
                             />
                         </InputGroup>
                     </Form.Group>
@@ -128,7 +128,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                                 required
                                 type="text"
                                 size="lg"
-                                defaultValue={infoServicios.direccion.numero}
+                                defaultValue={infoServicios.direccion && infoServicios.direccion.numero}
                             />
                         </InputGroup>
                     </Form.Group>
@@ -139,7 +139,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                                 required
                                 type="text"
                                 size="lg"
-                                defaultValue={infoServicios.direccion.codigoPostal}
+                                defaultValue={infoServicios.direccion && infoServicios.direccion.codigoPostal}
                             />
                         </InputGroup>
                     </Form.Group>
@@ -150,7 +150,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                                 required
                                 type="text"
                                 size="lg"
-                                defaultValue={infoServicios.direccion.municipio.descripcion}
+                                defaultValue={infoServicios.direccion && infoServicios.direccion.municipio.descripcion}
                             />
                         </InputGroup>
                     </Form.Group>
@@ -161,7 +161,7 @@ export function InfoServicios({ infoServicios }: InfoServiciosProps) {
                                 required
                                 type="text"
                                 size="lg"
-                                defaultValue={infoServicios.direccion.municipio.provincia.descripcion}
+                                defaultValue={infoServicios.direccion && infoServicios.direccion.municipio.provincia.descripcion}
                             />
                         </InputGroup>
                     </Form.Group>

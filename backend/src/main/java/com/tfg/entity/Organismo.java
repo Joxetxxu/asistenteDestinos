@@ -14,9 +14,9 @@ public class Organismo {
     private String unidadOrganica;
     private Integer nivel;
 
-    @OneToOne
-    @JoinColumn(name = "dir3_padre")
-    private Organismo organoPadre;
+    //@OneToOne
+    //@JoinColumn(name = "dir3_padre")
+    //private Organismo organoPadre;
 
     public Organismo() {
     }

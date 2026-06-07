@@ -63,7 +63,6 @@ export function InfoSalario({ infoSalario }: InfoSalarioProps) {
                             required
                             type='text'
                             size="lg"
-
                             defaultValue={infoSalario.condicionesProductividad}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

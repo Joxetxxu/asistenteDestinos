@@ -2,6 +2,7 @@ package com.tfg.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +32,12 @@ public class MarcadorController {
 
             for (Encuesta e : encuestas) {
 
-                Marcador m = new Marcador(e.getId(), e.getOrganismo().getUnidadOrganica(),e.getDireccion().getLat(), e.getDireccion().getLng());
+                Marcador m = new Marcador(e.getDireccion().getId(), e.getOrganismo().getUnidadOrganica(),e.getDireccion().getLat(), e.getDireccion().getLng());
                 marcadores.add(m);
             }
             
+            marcadores = marcadores.stream().distinct().collect(Collectors.toList());
+
             String json = mapper.writeValueAsString(marcadores);
             return json;
         } catch (JsonProcessingException e) {

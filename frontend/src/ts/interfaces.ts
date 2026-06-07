@@ -63,7 +63,7 @@ export interface Direccion {
   calle: string
   numero: string
   codigoPostal: string
-  municipio: Municipio, 
+  municipio: Municipio,
   lat?: number,
   lng?: number
 }
@@ -183,4 +183,26 @@ export interface InfoTeletrabajoProps {
 
 export interface InfoMovilidadProps {
   infoMovilidad: InfoMovilidad
+}
+
+
+export interface Destino {
+  dir3: string
+  organismo: string
+  provincia: string
+  encuestas: number
+  sueldoTotal: number
+  teletrabajo: number
+  viajar: number
+  accesible: number
+  tardes: number
+  aparamiento: number
+  guarderia: number
+  tardesPorcentaje: string
+  viajarPorcentaje: string
+  aparamientoPorcentaje: string
+  accesiblePorcentaje: string
+  fiabilidad: string
+  guarderiaPorcentaje: string
+  teletrabajoPorcentaje: string
 }

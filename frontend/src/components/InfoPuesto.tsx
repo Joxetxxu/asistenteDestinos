@@ -41,12 +41,11 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                 <Row className="mb-3">
                     <Form.Group as={Col} md="2" controlId='hayOficinaCalidad'>
                         <Form.Label>Hay oficina de calidad</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            ç size="lg"
-                            defaultValue={infoPuesto.hayOficinaCalidad}
-                        />
+                        <Form.Select size="lg" defaultValue={infoPuesto.hayOficinaCalidad}>
+                            <option></option>
+                            <option value="S">SI</option>
+                            <option value="N">NO</option>
+                        </Form.Select>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId='tipoProyectos'>
@@ -61,12 +60,11 @@ export function InfoPuesto({ infoPuesto }: InfoPuestoProps) {
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId='hayQueViejar'>
                         <Form.Label>Hay que viajar</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            size="lg"
-                            defaultValue={infoPuesto.hayQueViejar}
-                        />
+                        <Form.Select size="lg" defaultValue={infoPuesto.hayQueViejar}>
+                            <option></option>
+                            <option value="S">SI</option>
+                            <option value="N">NO</option>
+                        </Form.Select>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                 </Row>
