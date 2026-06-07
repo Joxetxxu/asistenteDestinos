@@ -18,6 +18,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
 import { Listado } from './pages/admin/encuestas/Listado';
 import { Detalle } from './pages/admin/encuestas/Detalle';
+import { ListadoOrganismo } from './pages/admin/encuestas/ListadoOrganismo';
 function App() {
 
   const [show, setShow] = useState(false);
@@ -84,6 +85,9 @@ function App() {
     },
     {
       path: "/listado", element: <Listado />,
+    },
+    {
+      path: "/listadoOrganismo/:id", element: <ListadoOrganismo />
     },
     {
       path: "/listado/:id", element: <Detalle />,

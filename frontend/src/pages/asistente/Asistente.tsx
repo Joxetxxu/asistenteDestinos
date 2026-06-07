@@ -1,14 +1,15 @@
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { RastroMigas } from "../../components/RastroMigas";
 import type { Destino } from "../../ts/interfaces";
 import { getDestinos } from "../../ts/restClient";
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 export function Asistente() {
 
     const [destinos, setDestinos] = useState<Destino[]>([]);
-
+    let navigate = useNavigate();
 
     useEffect(() => {
         getDestinos("sueldoTotal", "viajar", "aparcamiento").then(
@@ -21,10 +22,11 @@ export function Asistente() {
 
 
     const columns: GridColDef[] = [
-            { field: 'mediaPonderada', headerName: 'Porcentaje Acierto',flex: 1,  headerClassName: 'cabeceratabla', renderCell: (params) => (
+        {
+            field: 'mediaPonderada', headerName: 'Acierto', flex: 1, headerClassName: 'cabeceratabla', renderCell: (params) => (
                 params.row.mediaPonderada.toFixed(2) + " %"
-            ) },
-        //         { field: 'encuestas', headerName: 'Nº Encuestas', flex: 1, headerClassName: 'cabeceratabla' },F
+            )
+        },
         { field: 'organismo', headerName: 'Organismo', flex: 3, headerClassName: 'cabeceratabla', headerAlign: 'center', description: 'Nombre del organismo al que corresponde el destino' },
         { field: 'provincia', headerName: 'Provincia', flex: 1, headerClassName: 'cabeceratabla' },
         { field: 'sueldoTotal', type: 'number', headerName: 'Salario (€)', flex: 1, headerClassName: 'cabeceratabla', headerAlign: 'center', align: 'right', description: 'Salario medio en euros, calculado a partir de las encuestas realizadas' },
@@ -40,7 +42,26 @@ export function Asistente() {
                     params.row.encuestas < 31 ? <span style={{ color: 'blue' }}>Media</span> :
                         <span style={{ color: 'green' }}>Alta</span>
             )
-        },
+        }, {
+            field: 'acciones', headerClassName: 'cabeceratabla',
+            headerName: 'Consultar',
+            flex: 2,
+            sortable: false,
+            filterable: false,
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => (
+                <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => {
+                        navigate("/listadoOrganismo/" + params.row.dir3)
+                    }}
+                >
+                    Ver encuestas
+                </Button>
+            )
+        }
     ];
 
 
@@ -61,9 +82,10 @@ export function Asistente() {
                         columns={columns}
                         autoPageSize
                         getRowClassName={(params) =>
-                            params.row.encuestas < 11 ? 'fila-baja-fiabilidad' :
-                                params.row.encuestas < 31 ? 'fila-media-fiabilidad' :
-                                    'fila-alta-fiabilidad'
+                            params.row.orden === 1 ? 'fila-primero' :
+                                params.row.orden === 2 ? 'fila-segundo' :
+                                    params.row.orden === 3 ? 'fila-tercero' :
+                                        ''
                         }
                     />
                 </div>

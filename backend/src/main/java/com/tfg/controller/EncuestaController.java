@@ -28,7 +28,6 @@ public class EncuestaController {
         List<Encuesta> encuestas = encuestaRepository.findAll();
         try {
             String dtoAsString = mapper.writeValueAsString(encuestas);
-
             return dtoAsString;
         } catch (JsonProcessingException e) {
             return e.getMessage();
@@ -48,4 +47,16 @@ public class EncuestaController {
         }
     }
 
+    @GetMapping("/encuestas/organismo/{dir3}")
+    String getEncuestasOrganismo(@PathVariable String dir3) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Encuesta> encuestas = encuestaRepository.findByOrganismoId(dir3);
+        try {
+            String dtoAsString = mapper.writeValueAsString(encuestas);
+            return dtoAsString;
+        } catch (JsonProcessingException e) {
+            return e.getMessage();
+        }
+    }
 }
