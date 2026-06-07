@@ -1,6 +1,8 @@
 package com.tfg.controller;
 
+import com.tfg.entity.Municipio;
 import com.tfg.entity.Organismo;
+import com.tfg.entity.Provincia;
 import com.tfg.repository.MunicipioRepository;
 import com.tfg.repository.OrganismoRepository;
 import com.tfg.repository.ProvinciaRepository;
@@ -46,4 +48,45 @@ class TablasMaestrasControllerUnitTest {
         assertEquals(1, result.size());
         verify(organismoRepository).findByNivel(5);
     }
+
+    @Test
+    void getOrganismos() {
+        Organismo o = new Organismo();
+        o.setDir3("O1");
+        o.setNivel(5);
+
+        when(organismoRepository.findAll()).thenReturn(List.of(o));
+
+        List<Organismo> result = controller.getOrganismos();
+
+        assertEquals(1, result.size());
+        verify(organismoRepository).findAll();
+    }
+
+    @Test
+    void getProvincias() {
+        Provincia o = new Provincia();
+        o.setCODIGO("uno");
+        o.setDescripcion("asdf");
+        when(provinciaRepository.findAll()).thenReturn(List.of(o));
+
+        List<Provincia> result = controller.getProvincias();
+
+        assertEquals(1, result.size());
+        verify(provinciaRepository).findAll();
+    }
+
+    @Test
+    void getMunicipio() {
+        Municipio o = new Municipio();
+        o.setCODIGO("uno");
+        o.setDescripcion("asdf");
+        when(municipioRepository.findAll()).thenReturn(List.of(o));
+
+        List<Municipio> result = controller.getMunicipios();
+
+        assertEquals(1, result.size());
+        verify(municipioRepository).findAll();
+    }
+
 }

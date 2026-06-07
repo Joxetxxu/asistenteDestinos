@@ -65,7 +65,7 @@ class DestinoControllerTest {
         low.setEncuestas(10L);
         low.setTeletrabajo(90L);
         low.setGuarderia(1);
-        
+
         Destino high = new Destino();
         high.setDir3("H");
         high.setSueldoTotal(3000.0f);
@@ -86,4 +86,25 @@ class DestinoControllerTest {
         assertEquals(1, result.get(0).getOrden());
         assertEquals(2, result.get(1).getOrden());
     }
+
+    @Test
+    void getDestinos_SinEncuestas() {
+        Destino low = new Destino();
+        low.setDir3("L");
+        low.setSueldoTotal(0.0f);
+        low.setEncuestas(0L);
+        low.setTeletrabajo(90L);
+        low.setGuarderia(1);
+
+        List<Destino> all = new ArrayList<>();
+        all.add(low);
+
+        when(destinoRepository.findAll()).thenReturn(all);
+
+        List<Destino> result = controller.getDestinos("sueldoTotal", "teletrabajo", "guarderia");
+        assertEquals("L", result.get(0).getDir3());
+        assertEquals(1, result.get(0).getOrden());
+        //assertEquals(1, result.get(0).getMediaPonderada());
+    }
+
 }

@@ -13,10 +13,12 @@ public class Marcador implements Serializable {
     }
 
     public Marcador(Long id, String name, String lat, String lng) {
-        this.name = name;
-        this.position.setLat( new BigDecimal(lat) );
-        this.position.setLng( new BigDecimal(lng) );
-        this.id = id;
+        this.setId(id);
+        this.setName(name);
+        this.setPosition(new Position());
+        this.position.setLat(new BigDecimal(lat));
+        this.position.setLng(new BigDecimal(lng));
+
     }
 
     public Long getId() {
@@ -80,7 +82,4 @@ public class Marcador implements Serializable {
         return true;
     }
 
-
-
-    
 }
