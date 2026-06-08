@@ -17,8 +17,8 @@ export function Provincias() {
     }, [])
 
     const columns: GridColDef[] = [
-        { field: 'CODIGO', headerName: 'Código', minWidth: 395, headerClassName: 'cabeceratabla' },
-        { field: 'descripcion', headerName: 'Descripción', minWidth: 900, headerClassName: 'cabeceratabla' }
+        { field: 'CODIGO', headerName: 'Código', flex: 4, headerClassName: 'cabeceratabla' },
+        { field: 'descripcion', headerName: 'Descripción', flex: 8, headerClassName: 'cabeceratabla' }
     ];
 
 

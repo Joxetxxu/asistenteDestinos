@@ -26,6 +26,8 @@ public class EncuestaController {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Encuesta> encuestas = encuestaRepository.findAll();
+        // ordenar por estado
+        encuestas.sort((e1, e2) -> e1.getEstado().compareTo(e2.getEstado()));
         try {
             String dtoAsString = mapper.writeValueAsString(encuestas);
             return dtoAsString;

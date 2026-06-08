@@ -239,3 +239,10 @@ nav {
 .fila-tercero {
   background-color: #EAEFC8;
 }
+
+.fila-pendiente {
+  background-color: wheat;
+}
+.fila-rechazado {
+  background-color: silver;
+}

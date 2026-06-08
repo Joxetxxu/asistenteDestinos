@@ -1,6 +1,5 @@
 package com.tfg.controller;
 
-
 import com.tfg.entity.Municipio;
 import com.tfg.entity.Organismo;
 import com.tfg.entity.Provincia;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TablasMaestrasController {
@@ -20,27 +20,24 @@ public class TablasMaestrasController {
     private final ProvinciaRepository provinciaRepository;
     private final MunicipioRepository municipioRepository;
 
-
     TablasMaestrasController(OrganismoRepository organismoRepository,
-                             ProvinciaRepository provinciaRepository,
-                             MunicipioRepository municipioRepository) {
+            ProvinciaRepository provinciaRepository,
+            MunicipioRepository municipioRepository) {
         this.organismoRepository = organismoRepository;
         this.provinciaRepository = provinciaRepository;
         this.municipioRepository = municipioRepository;
     }
 
-
-
     @GetMapping("/organismos")
     List<Organismo> getOrganismos() {
-        return organismoRepository.findAll();
+        List<Organismo> organismos = organismoRepository.findAll();
+        return organismos;
     }
 
     @GetMapping("/jerarquia")
     List<Organismo> getOrganismosJerarquia() {
         return organismoRepository.findByNivel(5);
     }
-
 
     @GetMapping("/provincias")
     List<Provincia> getProvincias() {
@@ -51,7 +48,6 @@ public class TablasMaestrasController {
     List<Municipio> getMunicipios() {
         return municipioRepository.findAll();
     }
-
 
     @GetMapping("/municipios/{id}")
     List<Municipio> getMunicipios(@PathVariable String id) {

@@ -17,10 +17,10 @@ export function Municipios() {
     }, [])
 
     const columns: GridColDef[] = [
-        { field: 'CODIGO', headerName: 'Código', minWidth: 395, headerClassName: 'cabeceratabla' },
-        { field: 'descripcion', headerName: 'Descripción', minWidth: 600, headerClassName: 'cabeceratabla' },
+        { field: 'CODIGO', headerName: 'Código', flex: 2, headerClassName: 'cabeceratabla' },
+        { field: 'descripcion', headerName: 'Descripción', flex: 5, headerClassName: 'cabeceratabla' },
         {
-            field: 'provincia', headerName: 'Provincia', width: 350, headerClassName: 'cabeceratabla',
+            field: 'provincia', headerName: 'Provincia', flex: 5, headerClassName: 'cabeceratabla',
             valueGetter: (value, row) => {
                 return `${row.provincia.descripcion}`;
             }

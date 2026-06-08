@@ -17,24 +17,15 @@ export function Organismos() {
     }, [])
 
     const columns: GridColDef[] = [
-        { field: 'dir3', headerName: 'Dir3', width: 150, headerClassName: 'cabeceratabla' },
-        { field: 'unidadOrganica', headerName: 'Unidad Orgánica', width: 450, headerClassName: 'cabeceratabla' },
-        { field: 'nivel', headerName: 'Nivel', width: 70, headerClassName: 'cabeceratabla' },
+        { field: 'dir3', headerName: 'Dir3', flex: 2, headerClassName: 'cabeceratabla' },
+        { field: 'unidadOrganica', headerName: 'Unidad Orgánica', flex: 6, headerClassName: 'cabeceratabla' },
+        { field: 'nivel', headerName: 'Nivel', flex: 2, headerClassName: 'cabeceratabla' },
         {
             field: 'organoPadre.unidadOrganica.dir3',
-            headerName: 'Dir3 Padre', width: 150,
+            headerName: 'Dir3 Padre', flex: 2,
             headerClassName: 'cabeceratabla',
             valueGetter: (value, row) => {
-                return `${row.organoPadre.dir3}`;
-            }
-        },
-        {
-            field: 'organoPadre.unidadOrganica',
-            headerName: 'Unidad Orgánica Padre',
-            headerClassName: 'cabeceratabla',
-            width: 500,
-            valueGetter: (value, row) => {
-                return `${row.organoPadre.unidadOrganica}`;
+                return `${row.dir3Padre ? row.dir3Padre : ''}`;
             }
         }
     ];

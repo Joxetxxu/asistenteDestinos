@@ -39,6 +39,13 @@ export function Listado() {
             valueGetter: (value, row) => {
                 return `${row.direccion.municipio.provincia.descripcion}`;
             }
+        },
+        {
+            field: 'estado', headerName: 'Estado', flex: 4, headerClassName: 'cabeceratabla',
+            valueGetter: (value, row) => {
+                return `${row.estado === 1 ? "Pendiente de validación" :
+                    row.estado === 2 ? "Validada" : "Rechazada"}`;
+            }
         }, {
             field: 'acciones', headerClassName: 'cabeceratabla',
             headerName: 'Consultar',
@@ -65,7 +72,7 @@ export function Listado() {
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
-                        <RastroMigas key="rm" titulo='Listado de cuestionarios' nivel2={false} />
+                         <RastroMigas key="rm" titulo='Listado de cuestionarios' nivel2={true}  />
                     </Col>
                 </Row>
                 <Row>
@@ -76,6 +83,11 @@ export function Listado() {
                                 rows={encuestas} getRowId={(row) => row.id}
                                 columns={columns}
                                 autoPageSize
+                                getRowClassName={(params) =>
+                                    params.row.estado === 1 ? 'fila-pendiente' :
+                                        params.row.estado === 3 ? 'fila-rechazado' :
+                                            ''
+                                }
                             />
                         </div>
                     </Col>

@@ -3,6 +3,7 @@ import type { InfoHorario } from "../components/InfoHorario";
 
 export interface MigasProps {
   nivel2: boolean;
+  nivel3?: boolean;
   titulo: string
 }
 

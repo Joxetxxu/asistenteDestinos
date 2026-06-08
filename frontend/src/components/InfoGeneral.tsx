@@ -1,7 +1,8 @@
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
-import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import MapIcon from '@mui/icons-material/Map';
+import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import type { InfoGenerarProps } from "../ts/interfaces";
 import { Fecha } from "./Fecha";
 
@@ -112,7 +113,7 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                         </InputGroup>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId='provincia' className="mt-3">
-                        <Form.Label>Provincia {encuesta.direccion.lat} -  {encuesta.direccion.lng}</Form.Label>
+                        <Form.Label>Provincia</Form.Label>
                         <InputGroup >
                             <Form.Control
                                 required
@@ -124,6 +125,41 @@ export function InfoGeneral({ encuesta }: InfoGenerarProps) {
                     </Form.Group>
                 </Row>
 
+
+
+                <Row className="mb-3">
+                    <Form.Group as={Col} md="5" controlId='lat' className="mt-3">
+                        <Form.Label>Coordenada - Latitud</Form.Label>
+                        <InputGroup >
+                            <Form.Control
+                                required
+                                type="text"
+                                size="lg"
+                                defaultValue={encuesta.direccion.lat}
+                            />
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Group as={Col} md="5" controlId='lng' className="mt-3">
+                        <Form.Label>Coordenada - Longitud </Form.Label>
+                        <InputGroup >
+                            <Form.Control
+                                required
+                                type="text"
+                                size="lg"
+                                defaultValue={encuesta.direccion.lng}
+                            />
+                        </InputGroup>
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="2" controlId="exampleForm.boton" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
+                        <Form.Label>    </Form.Label>
+                        <Button variant="primary" size="lg" onClick={() => {
+                            let googleMapsUrl = `https://www.google.com/maps?q=${encuesta.direccion.lat},${encuesta.direccion.lng}`;
+                            window.open(googleMapsUrl, '_blank');
+                        }}> <MapIcon>   </MapIcon> </Button>
+
+                    </Form.Group>
+                </Row>
             </Container>
         }
     </>

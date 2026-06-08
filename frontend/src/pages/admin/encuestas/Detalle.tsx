@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Encuesta } from "../../../ts/interfaces";
-import { Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
 
 import { RastroMigas } from "../../../components/RastroMigas";
 import { getEncuesta } from "../../../ts/restClient";
@@ -16,12 +16,11 @@ import { useParams } from "react-router-dom";
 
 export function Detalle() {
     const [encuesta, setEncuesta] = useState<Encuesta>();
-    const [visible, setVisible] = useState<Boolean>(false);
+
     const { id } = useParams();
     useEffect(() => {
         getEncuesta(id || "0").then((data) => {
             setEncuesta(data)
-            setVisible(true)
         })
     }, [])
 
@@ -42,12 +41,12 @@ export function Detalle() {
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
-                        <RastroMigas key="rm" titulo='Rellenar cuestionario' nivel2={false} />
+                         <RastroMigas key="rm" titulo='Detalle de Cuestionario' nivel2={true}  nivel3={true} />
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} >
-                        <p className="tituloMenu">Rellenar Cuestionario </p>
+                        <p className="tituloMenu">Consultar detalle Cuestionario </p>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <Tabs
                                 defaultActiveKey="general"
@@ -86,8 +85,15 @@ export function Detalle() {
 
                     </Col>
                 </Row>
-
-
+                <Row className="justify-content-center mt-3">
+                    <Col xs={1} >
+                         <Button type="submit">Validar</Button> 
+                    </Col>
+                    
+                    <Col xs={1} >
+                         <Button type="submit">Rechazar</Button>
+                    </Col>
+                </Row>
             </Container>
         }
     </>

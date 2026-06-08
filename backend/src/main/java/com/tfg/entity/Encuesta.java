@@ -20,6 +20,7 @@ public class Encuesta implements Serializable {
     private String nombre;
     private Date fechaRealizacion;
     private Date fechaIncorporacion;
+    private Long estado;
 
     @OneToOne
     @JoinColumn(name = "ID_DIRECCION")
