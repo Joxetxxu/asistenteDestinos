@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
 import { InfoGeneral } from "../../components/InfoGeneral";
 import { InfoHorario } from "../../components/InfoHorario";
 import { InfoInstalaciones } from "../../components/InfoInstalaciones";
@@ -11,7 +11,7 @@ import { InfoServicios } from "../../components/InfoServicios";
 import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
 import { RastroMigas } from "../../components/RastroMigas";
 import type { Encuesta } from "../../ts/interfaces";
-
+import SendIcon from '@mui/icons-material/Send';
 
 export function Rellenar() {
 
@@ -118,6 +118,7 @@ export function Rellenar() {
                 cuantiaPagaObjetivos: '',
                 hayGuardias: '',
                 observaciones: '',
+                salario: 0
             },
         })
     }, [])
@@ -178,12 +179,15 @@ export function Rellenar() {
                                 </Tab>
                             </Tabs>
 
-                            {/* <Button type="submit">Submit form</Button> */}
                         </Form>
 
                     </Col>
                 </Row>
-
+                <Row className="justify-content-center mt-3">
+                    <Col xs={6} >
+                        <Button type="submit"> <SendIcon /> Enviar</Button>
+                    </Col>
+                </Row>
 
             </Container>
         }
