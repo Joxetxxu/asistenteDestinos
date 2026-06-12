@@ -5,10 +5,13 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tfg.dto.EstadoDto;
 import com.tfg.entity.Encuesta;
 import com.tfg.repository.EncuestaRepository;
 
@@ -61,4 +64,20 @@ public class EncuestaController {
             return e.getMessage();
         }
     }
+
+    @PutMapping("/encuestas/{id}/estado")
+    String actualizarEstado(@PathVariable Long id, @RequestBody EstadoDto estadoDto) {
+        Optional<Encuesta> encuestaOptional = encuestaRepository.findById(id);
+        if (encuestaOptional.isEmpty()) {
+            return "Encuesta no encontrada";
+        } else if (encuestaOptional.get().getEstado() != 1) {
+            return "Estado no válido";
+        }
+
+        Encuesta encuesta = encuestaOptional.get();
+        encuesta.setEstado(estadoDto.getEstado());
+        encuestaRepository.save(encuesta);
+        return "OK";
+    }
+
 }

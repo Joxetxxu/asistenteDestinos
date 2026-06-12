@@ -49,3 +49,8 @@ export const getDestinos  = async (criterio1: string, criterio2: string, criteri
     const response = await axios.get<Marcador[]>(`http://localhost:8090/asistente/${criterio1}/${criterio2}/${criterio3}`);
     return response.data;
 }
+
+export const cambiarEstadoEncuesta  = async (id: string, estado: number): Promise<any> => {
+    const response = await axios.put<Marcador[]>(`http://localhost:8090/encuestas/${id}/estado`, { estado });
+    return response.data;
+}

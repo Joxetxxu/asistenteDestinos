@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
-import type { Encuesta } from "../../../ts/interfaces";
 import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
+import type { Encuesta } from "../../../ts/interfaces";
 
-import { RastroMigas } from "../../../components/RastroMigas";
-import { getEncuesta } from "../../../ts/restClient";
+import { useNavigate, useParams } from "react-router-dom";
 import { InfoGeneral } from "../../../components/InfoGeneral";
-import { InfoPuesto } from "../../../components/InfoPuesto";
-import { InfoSalario } from "../../../components/InfoSalario";
 import { InfoHorario } from "../../../components/InfoHorario";
 import { InfoInstalaciones } from "../../../components/InfoInstalaciones";
+import { InfoMovilidad } from "../../../components/InfoMovilidad";
+import { InfoPuesto } from "../../../components/InfoPuesto";
+import { InfoSalario } from "../../../components/InfoSalario";
 import { InfoServicios } from "../../../components/InfoServicios";
 import { InfoTeletrabajo } from "../../../components/InfoTeletrabajo";
-import { InfoMovilidad } from "../../../components/InfoMovilidad";
-import { useParams } from "react-router-dom";
+import { RastroMigas } from "../../../components/RastroMigas";
+import { cambiarEstadoEncuesta, getEncuesta } from "../../../ts/restClient";
 
 export function Detalle() {
     const [encuesta, setEncuesta] = useState<Encuesta>();
+    let navigate = useNavigate();
 
     const { id } = useParams();
     useEffect(() => {
@@ -36,12 +37,26 @@ export function Detalle() {
         setValidated(true);
     };
 
+    function cambiarEstado(arg0: number): import("react").MouseEventHandler<HTMLButtonElement> | undefined {
+        return () => {
+            console.log("Cambiar estado a: " + arg0 + " para encuesta id: " + id);
+            cambiarEstadoEncuesta(id || "0", arg0).then((data) => {
+                if (data === "OK") {
+                    alert("Registro actualizado Correctamente");
+                    navigate("/listado");
+                } else {
+                    alert(data);
+                }
+            });
+        }
+    }
+
     return <>
         {encuesta &&
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
-                         <RastroMigas key="rm" titulo='Detalle de Cuestionario' nivel2={true}  nivel3={true} />
+                        <RastroMigas key="rm" titulo='Detalle de Cuestionario' nivel2={true} nivel3={true} />
                     </Col>
                 </Row>
                 <Row>
@@ -85,15 +100,16 @@ export function Detalle() {
 
                     </Col>
                 </Row>
-                <Row className="justify-content-center mt-3">
-                    <Col xs={1} >
-                         <Button type="submit">Validar</Button> 
-                    </Col>
-                    
-                    <Col xs={1} >
-                         <Button type="submit">Rechazar</Button>
-                    </Col>
-                </Row>
+                {encuesta?.estado === 1 && (
+                    <Row className="justify-content-center mt-3" >
+                        <Col xs={1} >
+                            <Button onClick={cambiarEstado(2)}>Validar</Button>
+                        </Col>
+
+                        <Col xs={1} >
+                            <Button onClick={cambiarEstado(3)}>Rechazar</Button>
+                        </Col>
+                    </Row>)}
             </Container>
         }
     </>

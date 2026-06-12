@@ -47,7 +47,8 @@ export interface Encuesta {
   id: number
   nombre: string
   fechaRealizacion: number
-  fechaIncorporacion: number
+  fechaIncorporacion: number,
+  estado: number,
   direccion: Direccion
   organismo: Organismo
   infoHorario: InfoHorario
