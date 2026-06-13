@@ -1,17 +1,17 @@
 package com.tfg.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.tfg.entity.Municipio;
 import com.tfg.entity.Organismo;
 import com.tfg.entity.Provincia;
 import com.tfg.repository.MunicipioRepository;
 import com.tfg.repository.OrganismoRepository;
 import com.tfg.repository.ProvinciaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class TablasMaestrasController {

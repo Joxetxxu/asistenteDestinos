@@ -44,20 +44,20 @@ export type Marcador = {
 
 
 export interface Encuesta {
-  id: number
-  nombre: string
-  fechaRealizacion: number
-  fechaIncorporacion: number,
-  estado: number,
-  direccion: Direccion
-  organismo: Organismo
-  infoHorario: InfoHorario
-  infoServicios: InfoServicios
-  infoTeletrabajo: InfoTeletrabajo
-  infoInstalaciones: InfoInstalaciones
-  infoMovilidad: InfoMovilidad
-  infoPuesto: InfoPuesto
-  infoSalario: InfoSalario
+  id?: number
+  nombre?: string
+  fechaRealizacion?: number
+  fechaIncorporacion?: number,
+  estado?: number,
+  direccion?: Direccion
+  organismo?: Organismo
+  infoHorario?: InfoHorario
+  infoServicios?: InfoServicios
+  infoTeletrabajo?: InfoTeletrabajo
+  infoInstalaciones?: InfoInstalaciones
+  infoMovilidad?: InfoMovilidad
+  infoPuesto?: InfoPuesto
+  infoSalario?: InfoSalario
 }
 
 export interface Direccion {
@@ -152,39 +152,42 @@ export interface InfoSalario {
 
 
 export interface InfoGenerarProps {
-  encuesta: Encuesta
+  encuesta: Encuesta,
+  estado: string,
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface FechaProps {
   valor: Dayjs,
-  disabled: boolean
+  disabled?: boolean,
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoPuestoProps {
-  infoPuesto: InfoPuesto
+  infoPuesto?: InfoPuesto
 }
 
 export interface InfoSalarioProps {
-  infoSalario: InfoSalario
+  infoSalario?: InfoSalario
 }
 
 export interface InfoHorarioProps {
-  infoHorario: InfoHorario
+  infoHorario?: InfoHorario
 }
 export interface InfoInstalacionesProps {
-  infoInstalaciones: InfoInstalaciones
+  infoInstalaciones?: InfoInstalaciones
 }
 
 export interface InfoServiciosProps {
-  infoServicios: InfoServicios
+  infoServicios?: InfoServicios
 }
 
 export interface InfoTeletrabajoProps {
-  infoTeletrabajo: InfoTeletrabajo
+  infoTeletrabajo?: InfoTeletrabajo
 }
 
 export interface InfoMovilidadProps {
-  infoMovilidad: InfoMovilidad
+  infoMovilidad?: InfoMovilidad
 }
 
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,16 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tfg.dto.EstadoDto;
+import com.tfg.entity.Direccion;
 import com.tfg.entity.Encuesta;
+import com.tfg.repository.DireccionRepository;
 import com.tfg.repository.EncuestaRepository;
 
 @RestController
 public class EncuestaController {
 
     private final EncuestaRepository encuestaRepository;
+    private final DireccionRepository direccionRepository;
 
-    public EncuestaController(EncuestaRepository encuestaRepository) {
+    public EncuestaController(EncuestaRepository encuestaRepository, DireccionRepository direccionRepository) {
         this.encuestaRepository = encuestaRepository;
+        this.direccionRepository = direccionRepository;
     }
 
     @GetMapping("/encuestas")
@@ -77,6 +82,27 @@ public class EncuestaController {
         Encuesta encuesta = encuestaOptional.get();
         encuesta.setEstado(estadoDto.getEstado());
         encuestaRepository.save(encuesta);
+        return "OK";
+    }
+
+    @PostMapping("/encuestas/registrar")
+    String registrarEncuesta( @RequestBody Encuesta encuesta) {
+        encuesta.setId(null);
+        encuesta.getDireccion().setId(null);
+        // Lo primero es guardar la dirección y se asignará a la encuesta para que tenga el id
+        Direccion x = direccionRepository.save(encuesta.getDireccion());
+        encuesta.setDireccion(x);
+
+        encuesta.setInfoHorario(null);
+        encuesta.setInfoSalario(null);
+        encuesta.setInfoPuesto(null);
+        encuesta.setInfoInstalaciones(null);
+        encuesta.setInfoServicios(null);
+        encuesta.setInfoMovilidad(null);
+        encuesta.setInfoTeletrabajo(null);
+
+        encuestaRepository.save(encuesta);
+
         return "OK";
     }
 

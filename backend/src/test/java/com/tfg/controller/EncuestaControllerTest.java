@@ -4,6 +4,7 @@ package com.tfg.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tfg.dto.EstadoDto;
 import com.tfg.entity.Encuesta;
+import com.tfg.repository.DireccionRepository;
 import com.tfg.repository.EncuestaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,9 @@ class EncuestaControllerTest {
 
     private EncuestaController controller;
 
+    @Mock
+    private DireccionRepository direccionRepository;
+
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
@@ -38,7 +42,7 @@ class EncuestaControllerTest {
 
     @BeforeEach
     void setUp() {
-        controller = new EncuestaController(encuestaRepository);
+        controller = new EncuestaController(encuestaRepository,direccionRepository);
     }
 
     @Test

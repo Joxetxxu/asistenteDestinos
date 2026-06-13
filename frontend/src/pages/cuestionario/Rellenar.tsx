@@ -12,16 +12,27 @@ import { InfoTeletrabajo } from "../../components/InfoTeletrabajo";
 import { RastroMigas } from "../../components/RastroMigas";
 import type { Encuesta } from "../../ts/interfaces";
 import SendIcon from '@mui/icons-material/Send';
+import { guardarEncuesta } from "../../ts/restClient";
+import { useNavigate } from "react-router-dom";
 
 export function Rellenar() {
 
     const [encuesta, setEncuesta] = useState<Encuesta>();
+    const [validated, setValidated] = useState(false);
+    let navigate = useNavigate();
+    function updateFields(fields: Partial<Encuesta>) {
+        if (encuesta) {
+            setEncuesta(prev => { return { ...prev, ...fields } })
+        }
+    }
+
     useEffect(() => {
         setEncuesta({
             id: 0,
-            nombre: '',
+            nombre: 'dd',
             fechaRealizacion: dayjs().valueOf(),
             fechaIncorporacion: dayjs().valueOf(),
+            estado: 1,
             direccion: {
                 id: 0,
                 calle: '',
@@ -123,9 +134,9 @@ export function Rellenar() {
         })
     }, [])
 
-    const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = (event: any) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -134,6 +145,21 @@ export function Rellenar() {
 
         setValidated(true);
     };
+
+    function handlerGuardar(event: any) {
+        if (encuesta) {
+            guardarEncuesta(encuesta).then((data) => {
+                if (data === "OK") {
+                    alert("Registro actualizado Correctamente");
+                    navigate("/listado");
+                }
+            })
+        } else {
+            alert("existe un problema")
+        }
+
+
+    }
 
     return <>
         {encuesta &&
@@ -154,7 +180,7 @@ export function Rellenar() {
                                 fill
                             >
                                 <Tab eventKey="general" title="Información General" >
-                                    <InfoGeneral encuesta={encuesta} ></InfoGeneral>
+                                    <InfoGeneral encuesta={encuesta} estado="alta" updateFields={updateFields}></InfoGeneral>
                                 </Tab>
                                 <Tab eventKey="puesto" title="Datos del puesto">
                                     <InfoPuesto infoPuesto={encuesta.infoPuesto} ></InfoPuesto>
@@ -185,7 +211,7 @@ export function Rellenar() {
                 </Row>
                 <Row className="justify-content-center mt-3">
                     <Col xs={6} >
-                        <Button type="submit"> <SendIcon /> Enviar</Button>
+                        <Button onClick={handlerGuardar}> <SendIcon /> Enviar</Button>
                     </Col>
                 </Row>
 

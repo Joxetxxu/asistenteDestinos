@@ -51,6 +51,11 @@ export const getDestinos  = async (criterio1: string, criterio2: string, criteri
 }
 
 export const cambiarEstadoEncuesta  = async (id: string, estado: number): Promise<any> => {
-    const response = await axios.put<Marcador[]>(`http://localhost:8090/encuestas/${id}/estado`, { estado });
+    const response = await axios.put<String>(`http://localhost:8090/encuestas/${id}/estado`, { estado });
+    return response.data;
+}
+
+export const guardarEncuesta  = async (encuesta: Encuesta): Promise<any> => {
+    const response = await axios.post<String>(`http://localhost:8090/encuestas/registrar`, encuesta);
     return response.data;
 }

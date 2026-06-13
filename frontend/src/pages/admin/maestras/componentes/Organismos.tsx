@@ -1,11 +1,12 @@
 import { type GridColDef, DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { getOrganismos } from "../../../../ts/restClient";
-import type { Organo } from "../../../../ts/tipos";
+import type { Organismo } from "../../../../ts/interfaces";
+
 
 export function Organismos() {
 
-    const [organismos, setOrganismos] = useState<Organo[]>([]);
+    const [organismos, setOrganismos] = useState<Organismo[]>([]);
 
     useEffect(() => {
         getOrganismos().then(

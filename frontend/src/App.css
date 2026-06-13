@@ -246,3 +246,7 @@ nav {
 .fila-rechazado {
   background-color: silver;
 }
+
+ .MuiAutocomplete-inputRoot  {
+  background-color: white;
+}
