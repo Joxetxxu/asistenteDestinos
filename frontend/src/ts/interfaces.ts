@@ -153,7 +153,7 @@ export interface InfoSalario {
 
 export interface InfoGenerarProps {
   encuesta: Encuesta,
-  estado: string,
+  estado?: string,
   updateFields: (fields: Partial<Encuesta>) => void
 }
 
@@ -165,29 +165,36 @@ export interface FechaProps {
 
 export interface InfoPuestoProps {
   infoPuesto?: InfoPuesto
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoSalarioProps {
   infoSalario?: InfoSalario
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoHorarioProps {
   infoHorario?: InfoHorario
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 export interface InfoInstalacionesProps {
   infoInstalaciones?: InfoInstalaciones
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoServiciosProps {
   infoServicios?: InfoServicios
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoTeletrabajoProps {
   infoTeletrabajo?: InfoTeletrabajo
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 export interface InfoMovilidadProps {
   infoMovilidad?: InfoMovilidad
+  updateFields: (fields: Partial<Encuesta>) => void
 }
 
 

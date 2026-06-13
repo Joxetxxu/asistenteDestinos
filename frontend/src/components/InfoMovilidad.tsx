@@ -2,7 +2,7 @@
 import { Col, Container, Form, Row } from "react-bootstrap";
 import type { InfoMovilidadProps } from "../ts/interfaces";
 
-export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
+export function InfoMovilidad({ infoMovilidad, updateFields }: InfoMovilidadProps) {
     return (<>
         {infoMovilidad &&
             <Container className="mt-5" >
@@ -14,6 +14,16 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                             as='textarea' rows={3}
                             size="lg"
                             defaultValue={infoMovilidad.movilidadInterna}
+                            onChange={({ target: { value } }) => {
+                                updateFields({
+                                    infoMovilidad: {
+                                        id: 0,
+                                        movilidadInterna: value,
+                                        posibilidadSalir: infoMovilidad.posibilidadSalir,
+                                        comisionServicio: infoMovilidad.comisionServicio
+                                    }
+                                })
+                            }}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -26,6 +36,16 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                             as='textarea' rows={3}
                             size="lg"
                             defaultValue={infoMovilidad.comisionServicio}
+                            onChange={({ target: { value } }) => {
+                                updateFields({
+                                    infoMovilidad: {
+                                        id: 0,
+                                        movilidadInterna: infoMovilidad.movilidadInterna,
+                                        posibilidadSalir: infoMovilidad.posibilidadSalir,
+                                        comisionServicio: value
+                                    }
+                                })
+                            }}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -38,6 +58,16 @@ export function InfoMovilidad({ infoMovilidad }: InfoMovilidadProps) {
                             as='textarea' rows={3}
                             size="lg"
                             defaultValue={infoMovilidad.posibilidadSalir}
+                            onChange={({ target: { value } }) => {
+                                updateFields({
+                                    infoMovilidad: {
+                                        id: 0,
+                                        movilidadInterna: infoMovilidad.movilidadInterna,
+                                        posibilidadSalir: value,
+                                        comisionServicio: infoMovilidad.comisionServicio
+                                    }
+                                })
+                            }}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>

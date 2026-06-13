@@ -42,7 +42,7 @@ class EncuestaControllerTest {
 
     @BeforeEach
     void setUp() {
-        controller = new EncuestaController(encuestaRepository,direccionRepository);
+       // controller = new EncuestaController(encuestaRepository,direccionRepository);
     }
 
     @Test

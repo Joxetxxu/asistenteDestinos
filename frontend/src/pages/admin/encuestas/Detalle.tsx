@@ -51,6 +51,12 @@ export function Detalle() {
         }
     }
 
+    function updateFields(fields: Partial<Encuesta>) {
+        if (encuesta) {
+            setEncuesta(prev => { return { ...prev, ...fields } })
+        }
+    }
+
     return <>
         {encuesta &&
             <Container>
@@ -70,28 +76,28 @@ export function Detalle() {
                                 fill
                             >
                                 <Tab eventKey="general" title="Información General" >
-                                    <InfoGeneral encuesta={encuesta} ></InfoGeneral>
+                                    <InfoGeneral encuesta={encuesta} updateFields={updateFields} ></InfoGeneral>
                                 </Tab>
                                 <Tab eventKey="puesto" title="Datos del puesto">
-                                    <InfoPuesto infoPuesto={encuesta.infoPuesto} ></InfoPuesto>
+                                    <InfoPuesto infoPuesto={encuesta.infoPuesto} updateFields={updateFields}></InfoPuesto>
                                 </Tab>
                                 <Tab eventKey="salario" title="Salario">
-                                    <InfoSalario infoSalario={encuesta.infoSalario}></InfoSalario>
+                                    <InfoSalario infoSalario={encuesta.infoSalario} updateFields={updateFields}></InfoSalario>
                                 </Tab>
                                 <Tab eventKey="horario" title="Horario">
-                                    <InfoHorario infoHorario={encuesta.infoHorario}></InfoHorario>
+                                    <InfoHorario infoHorario={encuesta.infoHorario} updateFields={updateFields}></InfoHorario>
                                 </Tab>
                                 <Tab eventKey="instalaciones" title="Instalaciones">
-                                    <InfoInstalaciones infoInstalaciones={encuesta.infoInstalaciones}></InfoInstalaciones>
+                                    <InfoInstalaciones infoInstalaciones={encuesta.infoInstalaciones} updateFields={updateFields}></InfoInstalaciones>
                                 </Tab>
                                 <Tab eventKey="servicios" title="Servicios">
-                                    <InfoServicios infoServicios={encuesta.infoServicios}></InfoServicios>
+                                    <InfoServicios infoServicios={encuesta.infoServicios} updateFields={updateFields}></InfoServicios>
                                 </Tab>
                                 <Tab eventKey="telebrabajo" title="Telebrabajo">
-                                    <InfoTeletrabajo infoTeletrabajo={encuesta.infoTeletrabajo}></InfoTeletrabajo>
+                                    <InfoTeletrabajo infoTeletrabajo={encuesta.infoTeletrabajo} updateFields={updateFields}></InfoTeletrabajo>
                                 </Tab>
                                 <Tab eventKey="movilidad" title="Movilidad">
-                                    <InfoMovilidad infoMovilidad={encuesta.infoMovilidad}></InfoMovilidad>
+                                    <InfoMovilidad infoMovilidad={encuesta.infoMovilidad} updateFields={updateFields}></InfoMovilidad>
                                 </Tab>
                             </Tabs>
 
