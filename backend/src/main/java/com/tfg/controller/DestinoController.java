@@ -50,7 +50,7 @@ public class DestinoController {
         }
     }
 
-    public void calcularMaMinSalario(List<Destino> destinos) {
+    protected void calcularMaMinSalario(List<Destino> destinos) {
         minSalario = destinos.stream()
                 .map(Destino::getSueldoTotal)
                 .min(Float::compare)
@@ -61,7 +61,7 @@ public class DestinoController {
                 .orElse(0.0f);
     }
 
-    public void establecerMediaPonderada(List<Destino> destinos, String criterio1, String criterio2, String criterio3) {
+    protected void establecerMediaPonderada(List<Destino> destinos, String criterio1, String criterio2, String criterio3) {
         for (Destino d : destinos) {
 
             float mediaPonderada = getValorColumna(d, criterio1) * pesoCriterio1 +
@@ -71,7 +71,7 @@ public class DestinoController {
         }
     }
 
-    public float getValorColumna(Destino destino, String criterio) {
+    protected float getValorColumna(Destino destino, String criterio) {
         switch (criterio) {
             case "sueldoTotal":
                 float salarioNormalizado = (destino.getSueldoTotal() - minSalario) / (maxSalario - minSalario) * 100.0f;

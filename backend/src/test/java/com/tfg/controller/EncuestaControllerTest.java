@@ -1,48 +1,60 @@
 
 package com.tfg.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tfg.dto.EstadoDto;
-import com.tfg.entity.Encuesta;
-import com.tfg.repository.DireccionRepository;
-import com.tfg.repository.EncuestaRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.tfg.entity.Encuesta;
+import com.tfg.repository.DireccionRepository;
+import com.tfg.repository.EncuestaRepository;
+import com.tfg.repository.InfoHorarioRepository;
+import com.tfg.repository.InfoInstalacionesRepository;
+import com.tfg.repository.InfoMovilidadRepository;
+import com.tfg.repository.InfoPuestoRepository;
+import com.tfg.repository.InfoSalarioRepository;
+import com.tfg.repository.InfoServiciosRepository;
+import com.tfg.repository.InfoTeletrabajoRepository;;
 
 @ExtendWith(MockitoExtension.class)
 class EncuestaControllerTest {
 
-    @Mock
-    private EncuestaRepository encuestaRepository;
-
     private EncuestaController controller;
 
     @Mock
+    private EncuestaRepository encuestaRepository;
+    @Mock
     private DireccionRepository direccionRepository;
-
-    private final ObjectMapper mapper = new ObjectMapper();
-
-    @Autowired
-    private MockMvc mockMvc;
+    @Mock
+    private InfoHorarioRepository infoHorarioRepository;
+    @Mock
+    private InfoSalarioRepository infoSalarioRepository;
+    @Mock
+    private InfoPuestoRepository infoPuestoRepository;
+    @Mock
+    private InfoInstalacionesRepository infoInstalacionesRepository;
+    @Mock
+    private InfoServiciosRepository infoServiciosRepository;
+    @Mock
+    private InfoMovilidadRepository infoMovilidadRepository;
+    @Mock
+    private InfoTeletrabajoRepository infoTeletrabajoRepository;
 
     @BeforeEach
     void setUp() {
-       // controller = new EncuestaController(encuestaRepository,direccionRepository);
+        controller = new EncuestaController(encuestaRepository, direccionRepository, infoHorarioRepository,
+                infoSalarioRepository, infoPuestoRepository, infoInstalacionesRepository, infoServiciosRepository,
+                infoMovilidadRepository,
+                infoTeletrabajoRepository);
     }
 
     @Test
@@ -88,58 +100,6 @@ class EncuestaControllerTest {
         assertTrue(json.contains("3"));
     }
 
-    @Test
-    void actualizarEstado_success() throws Exception {
-        Long id = 1L;
-        Encuesta encuesta = new Encuesta();
-        encuesta.setId(id);
-        encuesta.setEstado(1L);
 
-        when(encuestaRepository.findById(id)).thenReturn(Optional.of(encuesta));
-
-        EstadoDto dto = new EstadoDto();
-        dto.setEstado(2L);
-
-        // mockMvc.perform(put("/encuestas/" + id + "/estado")
-        //         .contentType(MediaType.APPLICATION_JSON)
-        //         .content(mapper.writeValueAsString(dto)))
-        //         .andExpect(status().isOk())
-        //         .andExpect(content().string("OK"));
-
-        verify(encuestaRepository).save(any(Encuesta.class));
-    }
-
-    @Test
-    void actualizarEstado_notFound() throws Exception {
-        Long id = 5L;
-        when(encuestaRepository.findById(id)).thenReturn(Optional.empty());
-
-        EstadoDto dto = new EstadoDto();
-        dto.setEstado(2L);
-
-        // mockMvc.perform(put("/encuestas/" + id + "/estado")
-        //         .contentType(MediaType.APPLICATION_JSON)
-        //         .content(mapper.writeValueAsString(dto)))
-        //         .andExpect(status().isOk())
-        //         .andExpect(content().string("Encuesta no encontrada"));
-    }
-
-    @Test
-    void actualizarEstado_invalidCurrentState() throws Exception {
-        Long id = 2L;
-        Encuesta encuesta = new Encuesta();
-        encuesta.setId(id);
-        encuesta.setEstado(3L); // not 1
-
-        when(encuestaRepository.findById(id)).thenReturn(Optional.of(encuesta));
-
-        EstadoDto dto = new EstadoDto();
-        dto.setEstado(4L);
-
-        // mockMvc.perform(put("/encuestas/" + id + "/estado")
-        //         .contentType(MediaType.APPLICATION_JSON)
-        //         .content(mapper.writeValueAsString(dto)))
-        //         .andExpect(status().isOk())
-        //         .andExpect(content().string("Estado no válido"));
-    }
+    
 }

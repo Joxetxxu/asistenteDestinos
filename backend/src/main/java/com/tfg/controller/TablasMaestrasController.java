@@ -2,6 +2,7 @@ package com.tfg.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,16 +35,6 @@ public class TablasMaestrasController {
         return organismos;
     }
 
-    @GetMapping("/jerarquia")
-    List<Organismo> getOrganismosJerarquia() {
-        return organismoRepository.findByNivel(5);
-    }
-
-    @GetMapping("/provincias")
-    List<Provincia> getProvincias() {
-        return provinciaRepository.findAll();
-    }
-
     @GetMapping("/municipios")
     List<Municipio> getMunicipios() {
         return municipioRepository.findAll();
@@ -52,5 +43,11 @@ public class TablasMaestrasController {
     @GetMapping("/municipios/{id}")
     List<Municipio> getMunicipios(@PathVariable String id) {
         return municipioRepository.findByProvincia(id);
+    }
+
+    @GetMapping("/provincias")
+    @PreAuthorize("hasRole('ADMIN')")
+    List<Provincia> getProvincias() {
+        return provinciaRepository.findAll();
     }
 }

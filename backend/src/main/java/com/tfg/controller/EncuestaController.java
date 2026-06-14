@@ -1,8 +1,11 @@
 package com.tfg.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,12 +68,14 @@ public class EncuestaController {
     }
 
     @GetMapping("/encuestas")
+    @PreAuthorize("hasRole('ADMIN')")
     String getEncuestas() {
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Encuesta> encuestas = encuestaRepository.findAll();
-        // ordenar por estado
-        encuestas.sort((e1, e2) -> e1.getEstado().compareTo(e2.getEstado()));
+        List<Encuesta> encuestas = encuestaRepository.findAll().stream()
+                .sorted(Comparator.comparing(Encuesta::getEstado))
+                .toList();
+        ;
         try {
             String dtoAsString = mapper.writeValueAsString(encuestas);
             return dtoAsString;
@@ -106,19 +111,20 @@ public class EncuestaController {
     }
 
     @PutMapping("/encuestas/{id}/estado")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
-    String actualizarEstado(@PathVariable Long id, @RequestBody EstadoDto estadoDto) {
+    public ResponseEntity<?> actualizarEstado(@PathVariable Long id, @RequestBody EstadoDto estadoDto) {
         Optional<Encuesta> encuestaOptional = encuestaRepository.findById(id);
         if (encuestaOptional.isEmpty()) {
-            return "Encuesta no encontrada";
+            return ResponseEntity.notFound().build(); // 404
         } else if (encuestaOptional.get().getEstado() != 1) {
-            return "Estado no válido";
+            return ResponseEntity.badRequest().build(); // 400
         }
 
         Encuesta encuesta = encuestaOptional.get();
         encuesta.setEstado(estadoDto.getEstado());
         encuestaRepository.save(encuesta);
-        return "OK";
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/encuestas/registrar")

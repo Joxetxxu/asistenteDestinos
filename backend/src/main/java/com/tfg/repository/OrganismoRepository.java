@@ -1,12 +1,11 @@
 package com.tfg.repository;
 
-import com.tfg.entity.Organismo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import com.tfg.entity.Organismo;
 
 public interface OrganismoRepository extends JpaRepository<Organismo, String> {
 
-    List<Organismo> findByNivel(Integer nivel);
+    //List<Organismo> findByNivel(Integer nivel);
 
 }

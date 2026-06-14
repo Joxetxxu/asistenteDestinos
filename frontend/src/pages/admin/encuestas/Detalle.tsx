@@ -39,15 +39,20 @@ export function Detalle() {
 
     function cambiarEstado(arg0: number): import("react").MouseEventHandler<HTMLButtonElement> | undefined {
         return () => {
-            console.log("Cambiar estado a: " + arg0 + " para encuesta id: " + id);
             cambiarEstadoEncuesta(id || "0", arg0).then((data) => {
-                if (data === "OK") {
+                if (data.status === 200) {
                     alert("Registro actualizado Correctamente");
                     navigate("/listado");
-                } else {
-                    alert(data);
                 }
-            });
+            }).catch((data) => {
+                console.log(data)
+                if (data.status === 404) {
+                    alert("No se ha encontrado el cuestionario");
+                } else if (data.status === 400) {
+                    alert("No se puede actualizar el registro. El estado no es el esperado");
+                }
+            })
+
         }
     }
 

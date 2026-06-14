@@ -35,19 +35,6 @@ class TablasMaestrasControllerUnitTest {
         controller = new TablasMaestrasController(organismoRepository, provinciaRepository, municipioRepository);
     }
 
-    @Test
-    void getOrganismosJerarquia_callsRepository() {
-        Organismo o = new Organismo();
-        o.setDir3("O1");
-        o.setNivel(5);
-
-        when(organismoRepository.findByNivel(5)).thenReturn(List.of(o));
-
-        List<Organismo> result = controller.getOrganismosJerarquia();
-
-        assertEquals(1, result.size());
-        verify(organismoRepository).findByNivel(5);
-    }
 
     @Test
     void getOrganismos() {
