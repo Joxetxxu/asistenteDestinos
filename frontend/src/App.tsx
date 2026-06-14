@@ -37,7 +37,7 @@ function App() {
     cambiaCredencialesAxios(login.user, login.pass)
     getPerfil().then((data) => {
       setMensaje("")
-      if (data === 'ROLE_ROL_ADMIN') {
+      if (data === 'ROLE_ADMIN') {
         logging(true)
       } else {
         logging(false)

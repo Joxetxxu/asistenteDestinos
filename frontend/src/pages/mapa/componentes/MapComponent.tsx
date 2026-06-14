@@ -77,7 +77,6 @@ export default function MapComponent() {
         getMarcadores().then(
             (data) => {
                 setLocations(data)
-                console.log("Marcadores cargados:", data);
             }
         )
     }, []);

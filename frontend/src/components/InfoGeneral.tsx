@@ -91,7 +91,6 @@ export function InfoGeneral({ encuesta, estado, updateFields }: InfoGenerarProps
                             renderInput={(params) => <TextField {...params} />}
                             value={encuesta.organismo}
                             onChange={(event, value) => {
-                                console.log(value?.dir3);
                                 updateFields({
                                     organismo: {
                                         dir3: value?.dir3 || "",

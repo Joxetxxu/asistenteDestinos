@@ -45,7 +45,6 @@ export function Detalle() {
                     navigate("/listado");
                 }
             }).catch((data) => {
-                console.log(data)
                 if (data.status === 404) {
                     alert("No se ha encontrado el cuestionario");
                 } else if (data.status === 400) {

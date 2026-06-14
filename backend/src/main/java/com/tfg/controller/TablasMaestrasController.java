@@ -2,7 +2,6 @@ package com.tfg.controller;
 
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +45,6 @@ public class TablasMaestrasController {
     }
 
     @GetMapping("/provincias")
-    @PreAuthorize("hasRole('ADMIN')")
     List<Provincia> getProvincias() {
         return provinciaRepository.findAll();
     }
